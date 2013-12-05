@@ -29,6 +29,9 @@ gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
 
 gem 'devise', '~> 3.1.1'
 
+# For feeds!
+gem "feedzirra", "~> 0.5.0"
+
 group :development, :test do
      gem 'sqlite3'
 end
