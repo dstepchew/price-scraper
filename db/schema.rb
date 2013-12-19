@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131211053307) do
+ActiveRecord::Schema.define(version: 20131219191627) do
 
   create_table "pins", force: true do |t|
     t.string   "description"
@@ -25,6 +25,32 @@ ActiveRecord::Schema.define(version: 20131211053307) do
   end
 
   add_index "pins", ["user_id"], name: "index_pins_on_user_id"
+
+  create_table "products", force: true do |t|
+    t.integer  "ProdId"
+    t.string   "ProdTitle"
+    t.text     "ProdDesc"
+    t.string   "ProdImageUrl"
+    t.string   "ProdUrl"
+    t.decimal  "ProdPrice"
+    t.decimal  "CurrProdPrice"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "StoreId"
+    t.string   "StoreTitle"
+  end
+
+  add_index "products", ["StoreId"], name: "index_products_on_StoreId"
+  add_index "products", ["StoreTitle"], name: "index_products_on_StoreTitle"
+
+  create_table "stores", force: true do |t|
+    t.integer  "StoreId"
+    t.string   "StoreTitle"
+    t.string   "StoreUrl"
+    t.text     "StoreDesc"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

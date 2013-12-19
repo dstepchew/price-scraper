@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  StoreId: 1
+  StoreTitle: MyString
+  StoreUrl: MyString
+  StoreDesc: MyText
+
+two:
+  StoreId: 1
+  StoreTitle: MyString
+  StoreUrl: MyString
+  StoreDesc: MyText

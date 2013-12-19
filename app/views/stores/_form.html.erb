@@ -1,0 +1,32 @@
+<%= form_for @store, html: { multipart: true } do |f| %>
+  <% if @store.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@store.errors.count, "error") %> prohibited this store from being saved:</h2>
+
+      <ul>
+      <% @store.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+  <div class="form-group">
+    <%= f.label :StoreTitle, "Title" %>
+    <%= f.text_field :StoreTitle, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :StoreUrl, "Store URL Address" %>
+    <%= f.text_field :StoreUrl, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :StoreDesc, "Store Description" %>
+    <%= f.text_area :StoreDesc, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+
+<% end %>
