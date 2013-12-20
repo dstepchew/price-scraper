@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131219191627) do
+ActiveRecord::Schema.define(version: 20131220051623) do
 
   create_table "pins", force: true do |t|
     t.string   "description"
@@ -42,10 +42,12 @@ ActiveRecord::Schema.define(version: 20131219191627) do
     t.datetime "updated_at"
     t.integer  "StoreId"
     t.string   "StoreTitle"
+    t.integer  "Store_id"
   end
 
   add_index "products", ["StoreId"], name: "index_products_on_StoreId"
   add_index "products", ["StoreTitle"], name: "index_products_on_StoreTitle"
+  add_index "products", ["Store_id"], name: "index_products_on_Store_id"
 
   create_table "stores", force: true do |t|
     t.integer  "StoreId"
