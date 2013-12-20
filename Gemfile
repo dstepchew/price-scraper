@@ -31,8 +31,10 @@ gem 'devise', '~> 3.1.1'
 
 # For feeds!
 gem "feedzirra", "~> 0.5.0"
+gem "nokogiri"
 
 gem 'paperclip', '~> 3.0'
+
 
 group :development, :test do
      gem 'sqlite3'

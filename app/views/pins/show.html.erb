@@ -6,6 +6,12 @@
   <%= @pin.description %>
 </p>
 
+<p>
+	 <strong>Web Address:</strong>
+  <%= @pin.description %>
+
+</p>
+
  <% if @pin.user == current_user %>
      <%= link_to 'Edit', edit_pin_path(@pin) %> |
 <% end %>

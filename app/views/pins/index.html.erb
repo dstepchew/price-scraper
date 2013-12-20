@@ -6,6 +6,7 @@
       <th>Image</th>
       <th>Description</th>
       <th>User</th>
+      <th>Web Address</th>
       <th></th>
       <th></th>
       <th></th>
@@ -18,6 +19,7 @@
         <td><%= image_tag pin.image.url(:thumb) %></td>
         <td><%= pin.description %></td>
         <td><%= pin.user.email if pin.user %></td>
+        <td><%= pin.description if pin.description %></td>
         <td><%= link_to 'Show', pin_path(pin) %></td>
         <% if pin.user == current_user %>
           <td><%= link_to 'Edit', edit_pin_path(pin) %></td>
