@@ -11,40 +11,44 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :ProdId %><br>
-    <%= f.number_field :ProdId %>
+  <div class="form-group">
+    <%= f.label :ProdId %>
+    <%= f.number_field :ProdId, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :ProdTitle %><br>
-    <%= f.text_field :ProdTitle %>
+  <div class="form-group">
+    <%= f.label :ProdTitle %>
+    <%= f.text_field :ProdTitle, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :ProdDesc %><br>
-    <%= f.text_area :ProdDesc %>
+  <div class="form-group">
+    <%= f.label :ProdDesc %>
+    <%= f.text_area :ProdDesc, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :ProdImageUrl %><br>
-    <%= f.text_field :ProdImageUrl %>
+  <div class="form-group">
+    <%= f.label :ProdImageUrl %>
+    <%= f.text_field :ProdImageUrl, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :ProdUrl %><br>
-    <%= f.text_field :ProdUrl %>
+  <div class="form-group">
+    <%= f.label :ProdUrl %>
+    <%= f.text_field :ProdUrl, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :ProdPrice %><br>
-    <%= f.text_field :ProdPrice %>
+  <div class="form-group">
+    <%= f.label :ProdPrice %>
+    <%= f.text_field :ProdPrice, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :CurrProdPrice %><br>
-    <%= f.text_field :CurrProdPrice %>
+  <div class="form-group">
+    <%= f.label :CurrProdPrice %>
+    <%= f.text_field :CurrProdPrice, class: "form-control" %>
   </div>
 
-<div class="field">
-<%= collection_select(:product, :StoreId, Store.all, :id, :StoreTitle, prompt: true) %>
+<div class="form-group">
+<%= collection_select(:product, :StoreId, Store.all, :id, :StoreTitle, {:prompt=> "Select A Store"}, {:class => "form-control"} ) %>
+
+
+
 </div>
-
-  <div class="actions">
-    <%= f.submit %>
+<div class="form-group">
+     <%= f.submit class: "btn btn-primary" %>
   </div>
 <% end %>
+
+<%= params.inspect %>

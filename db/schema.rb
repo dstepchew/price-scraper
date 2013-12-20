@@ -22,9 +22,13 @@ ActiveRecord::Schema.define(version: 20131219191627) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.string   "web_address"
+    t.string   "url"
   end
 
+  add_index "pins", ["url"], name: "index_pins_on_url"
   add_index "pins", ["user_id"], name: "index_pins_on_user_id"
+  add_index "pins", ["web_address"], name: "index_pins_on_web_address"
 
   create_table "products", force: true do |t|
     t.integer  "ProdId"

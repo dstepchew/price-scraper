@@ -16,6 +16,12 @@
 </p>
 
 <p>
+  <strong>Store Id:</strong>
+  <%= @product.StoreId %>
+</p>
+
+
+<p>
   <strong>Prodimageurl:</strong>
   <%= @product.ProdImageUrl %>
 </p>
@@ -34,6 +40,8 @@
   <strong>Currprodprice:</strong>
   <%= @product.CurrProdPrice %>
 </p>
+
+<%= params.inspect %>
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>

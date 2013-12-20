@@ -1,5 +1,7 @@
 class Product < ActiveRecord::Base
 
 	belongs_to :store
-	has_and_belongs_to_many :pins
+	# validates_presence_of :store
+
+
 end
