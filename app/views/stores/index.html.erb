@@ -1,0 +1,33 @@
+<h1>Listing stores</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Storeid</th>
+      <th>Storetitle</th>
+      <th>Storeurl</th>
+      <th>Storedesc</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @stores.each do |store| %>
+      <tr>
+        <td><%= store.StoreId %></td>
+        <td><%= store.StoreTitle %></td>
+        <td><%= store.StoreUrl %></td>
+        <td><%= store.StoreDesc %></td>
+        <td><%= link_to 'Show', store %></td>
+        <td><%= link_to 'Edit', edit_store_path(store) %></td>
+        <td><%= link_to 'Destroy', store, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Store', new_store_path %>

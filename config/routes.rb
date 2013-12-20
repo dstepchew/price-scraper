@@ -1,4 +1,8 @@
 ZoomApp::Application.routes.draw do
+  resources :stores
+
+  resources :products
+
   resources :pins
 
   devise_for :users
