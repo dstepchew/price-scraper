@@ -3,14 +3,13 @@
 <table>
   <thead>
     <tr>
-      <th>Prodid</th>
-      <th>Prodtitle</th>
-      <th>Proddesc</th>
-      <th>Prodimageurl</th>
-      <th>Produrl</th>
-      <th>Prodprice</th>
-      <th>Currprodprice</th>
-      <th></th>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Image</th>
+      <th>URL</th>
+      <th>Price</th>
+      <th>Store</th>
       <th></th>
       <th></th>
     </tr>
@@ -19,13 +18,13 @@
   <tbody>
     <% @products.each do |product| %>
       <tr>
-        <td><%= product.ProdId %></td>
-        <td><%= product.ProdTitle %></td>
-        <td><%= product.ProdDesc %></td>
-        <td><%= product.ProdImageUrl %></td>
-        <td><%= product.ProdUrl %></td>
-        <td><%= product.ProdPrice %></td>
-        <td><%= product.CurrProdPrice %></td>
+        <td><%= product.id %></td>
+        <td><%= product.name %></td>
+        <td><%= product.description %></td>
+        <td><%= product.imageurl %></td>
+        <td><%= product.url %></td>
+        <td>$<%= product.price %></td>
+        <td><%= product.store.try(:name) %></td>
         <td><%= link_to 'Show', product %></td>
         <td><%= link_to 'Edit', edit_product_path(product) %></td>
         <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>

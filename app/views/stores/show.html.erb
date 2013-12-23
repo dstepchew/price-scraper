@@ -1,24 +1,21 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Storeid:</strong>
-  <%= @store.StoreId %>
+  <strong>Name:</strong>
+  <%= @store.name %>
 </p>
 
 <p>
-  <strong>Storetitle:</strong>
-  <%= @store.StoreTitle %>
+  <strong>Web Address:</strong>
+  <%= @store.url %>
 </p>
 
 <p>
-  <strong>Storeurl:</strong>
-  <%= @store.StoreUrl %>
+  <strong>Description:</strong>
+  <%= @store.description %>
 </p>
 
-<p>
-  <strong>Storedesc:</strong>
-  <%= @store.StoreDesc %>
-</p>
+<%= params.inspect %>
 
 <%= link_to 'Edit', edit_store_path(@store) %> |
 <%= link_to 'Back', stores_path %>

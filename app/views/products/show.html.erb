@@ -1,18 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Prodid:</strong>
-  <%= @product.ProdId %>
+  <strong>Name:</strong>
+  <%= @product.name %>
 </p>
 
 <p>
-  <strong>Prodtitle:</strong>
-  <%= @product.ProdTitle %>
-</p>
-
-<p>
-  <strong>Proddesc:</strong>
-  <%= @product.ProdDesc %>
+  <strong>Description:</strong>
+  <%= @product.description %>
 </p>
 
 <p>
@@ -20,25 +15,25 @@
   <%= @product.Store_id %>
 </p>
 
+<p>
+  <strong>Store Name:</strong>
+  <%= @product.store.try(:name) %>
+</p>
+
 
 <p>
-  <strong>Prodimageurl:</strong>
-  <%= @product.ProdImageUrl %>
+  <strong>Image:</strong>
+  <%= @product.imageurl %>
 </p>
 
 <p>
-  <strong>Produrl:</strong>
-  <%= @product.ProdUrl %>
+  <strong>Url:</strong>
+  <%= @product.url %>
 </p>
 
 <p>
-  <strong>Prodprice:</strong>
-  <%= @product.ProdPrice %>
-</p>
-
-<p>
-  <strong>Currprodprice:</strong>
-  <%= @product.CurrProdPrice %>
+  <strong>Price:</strong>
+  $<%= @product.price %>
 </p>
 
 <%= params.inspect %>
