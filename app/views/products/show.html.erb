@@ -1,42 +1,42 @@
-<p id="notice"><%= notice %></p>
+        <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
+        <p>
+          <strong>Name:</strong>
+          <%= @product.name %>
+        </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @product.description %>
-</p>
+        <p>
+          <strong>Description:</strong>
+          <%= @product.description %>
+        </p>
 
-<p>
-  <strong>Store Id:</strong>
-  <%= @product.Store_id %>
-</p>
+        <p>
+          <strong>Store Id:</strong>
+          <%= @product.store_id %>
+        </p>
 
-<p>
-  <strong>Store Name:</strong>
-  <%= @product.store.try(:name) %>
-</p>
+        <p>
+          <strong>Store Name:</strong>
+          <%= @product.store.name %>
+        </p>
 
 
-<p>
-  <strong>Image:</strong>
-  <%= @product.imageurl %>
-</p>
+        <p>
+          <strong>Image:</strong>
+          <%= @product.imageurl %>
+        </p>
 
-<p>
-  <strong>Url:</strong>
-  <%= @product.url %>
-</p>
+        <p>
+          <strong>Url:</strong>
+          <%= @product.url %>
+        </p>
 
-<p>
-  <strong>Price:</strong>
-  $<%= @product.price %>
-</p>
+        <p>
+          <strong>Price:</strong>
+          $<%= @product.price %>
+        </p>
 
-<%= params.inspect %>
+        <%= params.inspect %>
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+        <%= link_to 'Edit', edit_product_path(@product) %> |
+        <%= link_to 'Back', products_path %>

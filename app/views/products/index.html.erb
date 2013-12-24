@@ -7,7 +7,6 @@
       <th>Name</th>
       <th>Description</th>
       <th>Image</th>
-      <th>URL</th>
       <th>Price</th>
       <th>Store</th>
       <th></th>
@@ -19,10 +18,9 @@
     <% @products.each do |product| %>
       <tr>
         <td><%= product.id %></td>
-        <td><%= product.name %></td>
+        <td><%= link_to product.name, product.url %></td>
         <td><%= product.description %></td>
-        <td><%= product.imageurl %></td>
-        <td><%= product.url %></td>
+        <td><%= link_to (image_tag product.imageurl, class: "img-responsive"), product.url %></td>
         <td>$<%= product.price %></td>
         <td><%= product.store.try(:name) %></td>
         <td><%= link_to 'Show', product %></td>
