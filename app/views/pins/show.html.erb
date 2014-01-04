@@ -8,13 +8,13 @@
 
 <p>
 	 <strong>Web Address:</strong>
-  <%= @pin.description %>
+  <%= @pin.url %>
 
 </p>
 
 <p>
 <strong>Product</strong>
-	<%= @pin.product_id %>
+	<%= @pin.product.name %>
 </p>
 
  <% if @pin.user == current_user %>

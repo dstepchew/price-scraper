@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131224061520) do
+ActiveRecord::Schema.define(version: 20140104081006) do
 
   create_table "Pins", force: true do |t|
     t.string   "description"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20131224061520) do
     t.string   "web_address"
     t.string   "url"
     t.integer  "product_id"
+    t.integer  "store_id"
   end
 
   add_index "Pins", ["url"], name: "index_pins_on_url"
@@ -50,6 +51,10 @@ ActiveRecord::Schema.define(version: 20131224061520) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name_selector"
+    t.string   "price_selector"
+    t.string   "image_selector"
+    t.string   "product_selector"
   end
 
   create_table "users", force: true do |t|

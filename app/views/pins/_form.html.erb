@@ -11,18 +11,34 @@
     </div>
   <% end %>
 
+
+
+ <div class="form-group">
+    <%= f.label :url %>
+    <%= f.text_field :url, class: "form-control" %>
+  </div>
+
+
+
   <div class="form-group">
     <%= f.label :description %>
     <%= f.text_field :description, class: "form-control" %>
   </div>
   
-  <div class="form-group">
+  <div class="form-group" style="display:none;">
     <%= f.label :image %>
     <%= f.file_field :image, class: "form-control" %>
   </div>
 
+ <div class="form-group">
+<%= collection_select(:pin, :store_id, Store.all, :id, :url, {:prompt=> "Select A Store"}, {:class => "form-control"} ) %>
+</div>
+
 <div class="form-group">
-<%= collection_select(:pin, :product_id, Product.all, :id, :name, {:prompt=> "Select A PRoduct"}, {:class => "form-control"} ) %>
+<%= collection_select(:pin, :product_id, Product.all, :id, :url, {:prompt=> "Select A Product"}, {:class => "form-control"} ) %>
+</div>
+
+
 
 
   <div class="form-group">

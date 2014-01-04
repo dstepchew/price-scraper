@@ -15,7 +15,23 @@
   <%= @store.description %>
 </p>
 
-<%= params.inspect %>
+<p>
+  <strong>Products:</strong>
+   <ul>
+   <% for product in @store.products %>
+      <li><%= product.name %></li>
+    <% end %>
+    </ul>
+</p>
+
+<p>
+  <strong>Pins:</strong>
+   <ul>
+   <% for pin in @store.pins %>
+      <li><%= pin.description %></li>
+    <% end %>
+    </ul>
+</p>
 
 <%= link_to 'Edit', edit_store_path(@store) %> |
 <%= link_to 'Back', stores_path %>

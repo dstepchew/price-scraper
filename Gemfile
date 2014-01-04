@@ -36,6 +36,7 @@ gem "nokogiri"
 gem 'paperclip', '~> 3.0'
 
 
+
 group :development, :test do
      gem 'sqlite3'
 end
