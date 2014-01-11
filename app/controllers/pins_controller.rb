@@ -20,9 +20,25 @@ class PinsController < ApplicationController
 
   def create
     @pin = current_user.pins.build(pin_params)
-    if @pin.save
-      redirect_to @pin, notice: 'Pin was successfully created.'
+    pin_url = params[:pin][:url]
+
+    pin_domain = URI.parse(pin_url).host
+
+    store = Store.find_by_url(pin_domain)
+    if store
+      @pin.store_id = store.id
+
+      product = Product.find_by_url(pin_url)
+      product = Product.create(url: pin_url, store_id: store.id) unless product
+      @pin.product_id = product.id
+
+      if @pin.save
+        redirect_to @pin, notice: 'Pin was successfully created.'
+      else
+        render action: 'new'
+      end
     else
+      flash[:notice] = 'This store is not in our database, please contact us to add this store before you can create this pin.'
       render action: 'new'
     end
   end
