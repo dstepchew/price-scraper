@@ -30,17 +30,6 @@
     <%= f.file_field :image, class: "form-control" %>
   </div>
 
- <div class="form-group">
-<%= collection_select(:pin, :store_id, Store.all, :id, :url, {:prompt=> "Select A Store"}, {:class => "form-control"} ) %>
-</div>
-
-<div class="form-group">
-<%= collection_select(:pin, :product_id, Product.all, :id, :url, {:prompt=> "Select A Product"}, {:class => "form-control"} ) %>
-</div>
-
-
-
-
   <div class="form-group">
     <%= f.submit class: "btn btn-primary" %>
   </div>
