@@ -19,8 +19,8 @@
 
 
         <p>
-          <strong>Image:</strong>
-          <%= @product.imageurl %>
+          
+          <%= link_to (image_tag @product.imageurl, class: "img-responsive"), @product.url %>
         </p>
 
         <p>
@@ -30,10 +30,10 @@
 
         <p>
           <strong>Price:</strong>
-          $<%= @product.price %>
+          <%= number_to_currency(@product.price, :unit => "$", :separator => ".") %>
         </p>
 
-        <%= params.inspect %>
+       
 
         <%= link_to 'Edit', edit_product_path(@product) %> |
         <%= link_to 'Back', products_path %>

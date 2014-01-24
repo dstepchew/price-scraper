@@ -35,7 +35,7 @@ gem "nokogiri"
 
 gem 'paperclip', '~> 3.0'
 
-
+gem 'mechanize'
 
 
 group :development, :test do

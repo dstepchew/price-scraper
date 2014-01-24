@@ -14,7 +14,7 @@
 
 <p>
 <strong>Product</strong>
-	<%= @pin.product.name %>
+	<%= link_to @pin.product.name, @pin.product %>
 </p>
 
  <% if @pin.user == current_user %>
