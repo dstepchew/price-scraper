@@ -1,6 +1,6 @@
 class FixColumnNames < ActiveRecord::Migration
   def change
-  	change_table :Products do |t|
+  	change_table :products do |t|
       t.rename :ProdTitle, :name
       t.rename :ProdDesc, :description
       t.rename :ProdImageUrl, :imageurl 

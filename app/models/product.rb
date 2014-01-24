@@ -2,7 +2,7 @@
 
 			belongs_to :store
 			validates_presence_of :url, :price, :name
-      has_many :pins
+      		has_many :pins
 			accepts_nested_attributes_for :pins
 
 
