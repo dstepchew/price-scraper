@@ -41,6 +41,8 @@ gem 'paperclip', '~> 3.0'
 
 gem 'mechanize'
 
+gem 'aws-sdk'
+
 
 group :development, :test do
      gem 'sqlite3'
