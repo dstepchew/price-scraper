@@ -26,6 +26,11 @@
         def create
           @store = Store.new(store_params)
 
+          def image_remote_url=(url_value)
+            self.image = URI.parse(url_value) unless url_value.blank?
+          super
+          end
+
           respond_to do |format|
             if @store.save
               format.html { redirect_to @store, notice: 'Store was successfully created.' }
@@ -69,6 +74,6 @@
 
           # Never trust parameters from the scary internet, only allow the white list through.
           def store_params
-            params.require(:store).permit(:name, :url, :description, :image, :product_selector, :name_selector, :price_selector, :image_selector)
+            params.require(:store).permit(:name, :url, :description, :image, :image_remote_url, :product_selector, :name_selector, :price_selector, :image_selector)
           end
       end
