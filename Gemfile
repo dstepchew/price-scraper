@@ -19,6 +19,8 @@ gem 'coffee-rails', git: 'git://github.com/rails/coffee-rails.git'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+gem 'jquery-turbolinks'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
@@ -26,6 +28,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 gem 'bootstrap-sass'
+
+gem 'masonry-rails', '~> 0.2.0'
 
 gem 'devise'
 
