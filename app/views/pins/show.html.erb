@@ -16,7 +16,7 @@
 			 <strong>Web Address:</strong>
 		 	 <%= @pin.url %>
 			</p>
-        <p><strong><%= @pin.user.email if @pin.user %></strong></p>
+        <p><strong><%= @pin.user.name if @pin.user %></strong></p>
 
         <% if @pin.user == current_user %>
          	<%= link_to edit_pin_path(@pin) do %>
