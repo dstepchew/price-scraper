@@ -6,6 +6,8 @@
       <div class="panel-body">
         <%= pin.description %><br/>
         <strong> <%= pin.user.name if pin.user %></strong>
+        <br/><%= number_to_currency(pin.product.price, :unit => "$", :separator => ".") %>
+<br/>
         <% if pin.user == current_user %>
           <div class="actions">
            <%= link_to edit_pin_path(pin) do %>

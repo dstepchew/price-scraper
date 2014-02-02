@@ -16,6 +16,9 @@
 			 <strong>Web Address:</strong>
 		 	 <%= @pin.url %>
 			</p>
+			<p>
+				<%= number_to_currency(@pin.product.price, :unit => "$", :separator => ".") %>
+			</p>
         <p><strong><%= @pin.user.name if @pin.user %></strong></p>
 
         <% if @pin.user == current_user %>
