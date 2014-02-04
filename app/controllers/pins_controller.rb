@@ -34,10 +34,13 @@ class PinsController < ApplicationController
         begin
           agent = Mechanize.new
           page = agent.get(pin_url)
+          product_price = nil
 
-          product_price = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s.to_f
+          product_price = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s.to_f if store.price_selector
           product_name  = page.search(store.name_selector).first.text
           product_imageurl = page.search(store.image_selector).first.attribute('src').value
+
+          product_imageurl = store.url + product_imageurl if store.image_uses_relative_path
 
           product = Product.create!(
             url: pin_url,

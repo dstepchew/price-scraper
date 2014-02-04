@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140202011721) do
+ActiveRecord::Schema.define(version: 20140204073150) do
 
   create_table "Pins", force: true do |t|
     t.string   "description"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20140202011721) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "image_remote_url"
+    t.boolean  "image_uses_relative_path"
   end
 
   create_table "users", force: true do |t|

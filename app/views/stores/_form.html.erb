@@ -45,13 +45,15 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :price_selector, "Price Selector" %>
-    <%= f.text_field :price_selector, class: "form-control" %>
+    <%= f.label :price_selector, "Price Selector", class: 'price_selector' %>
+    <%= f.text_field :price_selector, class: "form-control price_selector" %>
+    <%= check_box_tag :sales_price_selector, "Sales price selector", true %> Sales price selector
   </div>
 
   <div class="form-group">
     <%= f.label :image_selector, "Image Selector" %>
     <%= f.text_field :image_selector, class: "form-control" %>
+        <%= f.check_box :image_uses_relative_path, {}, true %> Uses relative path
   </div>
 
   <div class="form-group">
