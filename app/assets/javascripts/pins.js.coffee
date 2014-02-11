@@ -7,3 +7,9 @@ $ ->
     $('#pins').masonry
       itemSelector: '.box'
       isFitWidth: true
+
+$ ->
+  $('#products').imagesLoaded ->
+    $('#products').masonry
+      itemSelector: '.box'
+      isFitWidth: true
