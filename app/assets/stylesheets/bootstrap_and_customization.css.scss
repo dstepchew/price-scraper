@@ -10,6 +10,15 @@ $jumbotron-bg:                                         white;
 
 @import 'bootstrap';
 
+html,body
+{
+height:100%;
+}
+
+#wrap
+{
+min-height: 100%;
+}
 .center {
      text-align: center;
 }
@@ -18,12 +27,26 @@ $jumbotron-bg:                                         white;
      font-weight: bold;
 }
 
+
+
+#main
+{
+overflow:auto;
+padding-bottom:200px; /* this needs to be bigger than footer height*/
+}
+
+
+
 footer {
-	 background-color: #F5F5F5;
+	background-color: #F5F5F5;
     border-color: #DDDDDD;
     color: #333333;
     padding:20px;
-    min-height:200px;
+    height:200px;
     margin-top:40px;
+    position: relative;
+	margin-top: -200px; /* negative value of footer height */
+	clear:both;
 
 }
+
