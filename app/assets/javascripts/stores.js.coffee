@@ -6,7 +6,6 @@ $(document).ready ->
   $("#sales_price_selector").change ->
     if $("#sales_price_selector").is(':checked') == false
       $(".price_selector").hide()
-      $("#store_price_selector").val('')
     else
       $(".price_selector").show()
   return
