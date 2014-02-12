@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140204073150) do
+ActiveRecord::Schema.define(version: 20140212193916) do
 
   create_table "Pins", force: true do |t|
     t.string   "description"
@@ -61,6 +61,15 @@ ActiveRecord::Schema.define(version: 20140204073150) do
     t.datetime "image_updated_at"
     t.string   "image_remote_url"
     t.boolean  "image_uses_relative_path"
+  end
+
+  create_table "product_price_updates", force: true do |t|
+    t.integer  "pin_id"
+    t.decimal  "previous_price"
+    t.decimal  "updated_price"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
