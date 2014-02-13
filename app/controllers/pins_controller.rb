@@ -31,7 +31,7 @@ class PinsController < ApplicationController
       product = Product.find_by_url(pin_url)
 
       unless product
-        #begin
+        begin
           agent = Mechanize.new
           page = agent.get(pin_url)
           product_price = nil
@@ -62,10 +62,10 @@ class PinsController < ApplicationController
           else
             render action: 'new'
           end
-        #rescue => exp
-        #  flash[:notice] = exp.message
-        #  render action: 'new'
-        #end
+        rescue => exp
+          flash[:notice] = exp.message
+          render action: 'new'
+        end
       else
         @pin.product_id = product.id
         if @pin.save
