@@ -1,3 +1,4 @@
+
 <%= form_for @store, html: { multipart: true } do |f| %>
   <% if @store.errors.any? %>
     <div id="error_explanation">
@@ -47,7 +48,12 @@
   <div class="form-group">
     <%= f.label :price_selector, "Price Selector", class: 'price_selector' %>
     <%= f.text_field :price_selector, class: "form-control price_selector" %>
-    <%= check_box_tag :sales_price_selector, "1", true %> Uses separate sales price?
+    <%= check_box_tag :sales_price_selector, "1", false %> Uses separate sales price?
+  </div>
+
+  <div class="form-group">
+    <%= f.label :price_selector_2, "Sale Price Selector", class: 'price_selector_2' %>
+    <%= f.text_field :price_selector_2, class: "form-control price_selector_2" %>
   </div>
 
   <div class="form-group">
@@ -61,3 +67,4 @@
   </div>
 
 <% end %>
+
