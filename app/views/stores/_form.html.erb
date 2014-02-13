@@ -45,9 +45,15 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :price_selector, "Price Selector", class: 'price_selector' %>
-    <%= f.text_field :price_selector, class: "form-control price_selector" %>
-    <%= check_box_tag :sales_price_selector, "1", true %> Uses separate sales price?
+    <%= f.label :price_selector, "Price Selector" %>
+    <%= f.text_field :price_selector, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= check_box_tag :sales_price_selector, "1", false %> Uses separate sales price?
+    <br/>
+    <%= f.label :sales_price_selector, "Sales Price Selector", class: 'price_selector', style: 'display:none' %>
+    <%= f.text_field :sales_price_selector, class: "form-control price_selector", style: 'display:none' %>
   </div>
 
   <div class="form-group">

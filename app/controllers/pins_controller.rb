@@ -31,16 +31,21 @@ class PinsController < ApplicationController
       product = Product.find_by_url(pin_url)
 
       unless product
-        begin
+        #begin
           agent = Mechanize.new
           page = agent.get(pin_url)
           product_price = nil
 
-          product_price = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s.to_f if store.price_selector
+          unless store.sales_price_selector.blank?
+            product_price = page.search(store.sales_price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s.to_f
+          else
+            product_price = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s.to_f
+          end
+
           product_name  = page.search(store.name_selector).first.text
           product_imageurl = page.search(store.image_selector).first.attribute('src').value
 
-          product_imageurl = store.url + product_imageurl if store.image_uses_relative_path
+          product_imageurl = "http://" + store.url + product_imageurl if store.image_uses_relative_path
 
           product = Product.create!(
             url: pin_url,
@@ -57,10 +62,10 @@ class PinsController < ApplicationController
           else
             render action: 'new'
           end
-        rescue => exp
-          flash[:notice] = exp.message
-          render action: 'new'
-        end
+        #rescue => exp
+        #  flash[:notice] = exp.message
+        #  render action: 'new'
+        #end
       else
         @pin.product_id = product.id
         if @pin.save

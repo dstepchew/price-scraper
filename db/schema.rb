@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140212193916) do
+ActiveRecord::Schema.define(version: 20140213123739) do
 
-  create_table "Pins", force: true do |t|
+  create_table "pins", force: true do |t|
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -28,11 +28,20 @@ ActiveRecord::Schema.define(version: 20140212193916) do
     t.integer  "store_id"
   end
 
-  add_index "Pins", ["url"], name: "index_pins_on_url"
-  add_index "Pins", ["user_id"], name: "index_pins_on_user_id"
-  add_index "Pins", ["web_address"], name: "index_pins_on_web_address"
+  add_index "pins", ["url"], name: "index_pins_on_url"
+  add_index "pins", ["user_id"], name: "index_pins_on_user_id"
+  add_index "pins", ["web_address"], name: "index_pins_on_web_address"
 
-  create_table "Products", force: true do |t|
+  create_table "product_price_updates", force: true do |t|
+    t.integer  "pin_id"
+    t.decimal  "previous_price"
+    t.decimal  "updated_price"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "products", force: true do |t|
     t.string   "name"
     t.text     "description"
     t.string   "imageurl"
@@ -43,9 +52,9 @@ ActiveRecord::Schema.define(version: 20140212193916) do
     t.integer  "store_id"
   end
 
-  add_index "Products", ["store_id"], name: "index_products_on_Store_id"
+  add_index "products", ["store_id"], name: "index_products_on_store_id"
 
-  create_table "Stores", force: true do |t|
+  create_table "stores", force: true do |t|
     t.string   "name"
     t.string   "url"
     t.text     "description"
@@ -61,15 +70,7 @@ ActiveRecord::Schema.define(version: 20140212193916) do
     t.datetime "image_updated_at"
     t.string   "image_remote_url"
     t.boolean  "image_uses_relative_path"
-  end
-
-  create_table "product_price_updates", force: true do |t|
-    t.integer  "pin_id"
-    t.decimal  "previous_price"
-    t.decimal  "updated_price"
-    t.string   "status"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "sales_price_selector"
   end
 
   create_table "users", force: true do |t|
