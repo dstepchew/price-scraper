@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pin_id: 1
+  previous_price: 9.99
+  updated_price: 9.99
+  status: MyString
+
+two:
+  pin_id: 1
+  previous_price: 9.99
+  updated_price: 9.99
+  status: MyString
