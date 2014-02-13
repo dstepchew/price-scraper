@@ -74,6 +74,6 @@
 
           # Never trust parameters from the scary internet, only allow the white list through.
           def store_params
-            params.require(:store).permit(:name, :url, :description, :image, :image_remote_url, :product_selector, :name_selector, :price_selector, :image_selector, :image_uses_relative_path)
+            params.require(:store).permit(:name, :url, :description, :image, :image_remote_url, :product_selector, :name_selector, :price_selector, :sales_price_selector, :image_selector, :image_uses_relative_path)
           end
       end

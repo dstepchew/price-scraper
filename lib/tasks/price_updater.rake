@@ -1,10 +1,6 @@
 namespace :scrap do
   task :price_update => :environment do
     Pin.all.each do |pin|
-      puts pin.product.name
-      puts pin.product.price
-      puts "----------------------"
-
       begin
         pin_url = pin.url
         pin_domain = URI.parse(pin_url).host
@@ -14,7 +10,11 @@ namespace :scrap do
         page = agent.get(pin_url)
         product_price = pin.product.price
 
-        product_price = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s.to_f if store.price_selector
+        unless store.sales_price_selector.blank?
+          product_price = page.search(store.sales_price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s.to_f
+        else
+          product_price = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s.to_f
+        end
 
         if product_price.to_f != pin.product.price.to_f
           ProductPriceUpdate.create(
@@ -23,7 +23,7 @@ namespace :scrap do
             updated_price: product_price,
             status: 'pending'
           )
-          pin.product.update_attribute(:price, product_price)
+          #pin.product.update_attribute(:price, product_price)
         end
       rescue => exp
         puts "Exception in retrieving updated price " + exp.message
