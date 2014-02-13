@@ -5,7 +5,7 @@
 $(document).ready ->
   $("#sales_price_selector").change ->
     if $("#sales_price_selector").is(':checked') == false
-      $(".price_selector").hide()
+      $(".price_selector_2").hide()
     else
-      $(".price_selector").show()
+      $(".price_selector_2").show()
   return

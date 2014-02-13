@@ -1,3 +1,4 @@
+        <div class="container">
         <p id="notice"><%= notice %></p>
 
         
@@ -33,7 +34,17 @@
           <%= number_to_currency(@product.price, :unit => "$", :separator => ".") %>
         </p>
 
+        <p>
+          <%= @product.product_price_updates.previous_price %><br />
+          <%= @product.product_price_updates.updated_price %>
+          <%= @product.product_price_updates.created_at%><br />
+          <%= @product.product_price_updates.updated_at%>
+          <%= @product.product_price_updates.status%>
+
+        </p>
+
        
 
         <%= link_to 'Edit', edit_product_path(@product) %> |
         <%= link_to 'Back', products_path %>
+</div>
