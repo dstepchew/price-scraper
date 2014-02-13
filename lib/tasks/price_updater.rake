@@ -1,10 +1,6 @@
 namespace :scrap do
   task :price_update => :environment do
     Pin.all.each do |pin|
-      puts pin.product.name
-      puts pin.product.price
-      puts "----------------------"
-
       begin
         pin_url = pin.url
         pin_domain = URI.parse(pin_url).host
