@@ -40,7 +40,8 @@ class PinsController < ApplicationController
           product_name  = page.search(store.name_selector).first.text
           product_imageurl = page.search(store.image_selector).first.attribute('src').value
 
-          product_imageurl = store.url + product_imageurl if store.image_uses_relative_path
+          product_urlprefix = 'http://'
+          product_imageurl = product_urlprefix + store.url + product_imageurl if store.image_uses_relative_path
 
           product = Product.create!(
             url: pin_url,

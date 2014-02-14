@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20140213201150) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "image_remote_url"
+    t.string   "salepriceselector"
     t.boolean  "image_uses_relative_path"
     t.string   "sales_price_selector"
     t.string   "price_selector_2"
@@ -88,6 +89,7 @@ ActiveRecord::Schema.define(version: 20140213201150) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.string   "username"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
