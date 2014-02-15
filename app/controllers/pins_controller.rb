@@ -36,7 +36,13 @@ class PinsController < ApplicationController
           page = agent.get(pin_url)
           product_price = nil
 
-          product_price = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s.to_f if store.price_selector
+          if store.sales_price_selector
+            product_price = page.search(store.price_selector_2).first.text.match(/\b\d[\d,.]*\b/).to_s.to_f if page.search(store.price_selector_2).first
+            product_price = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s.to_f if ( product_price.nil? || product_price.blank? ) && page.search(store.price_selector).first
+          else
+            product_price = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s.to_f
+          end
+
           product_name  = page.search(store.name_selector).first.text
           product_imageurl = page.search(store.image_selector).first.attribute('src').value
 
