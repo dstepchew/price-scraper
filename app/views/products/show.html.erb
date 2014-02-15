@@ -33,18 +33,29 @@
           <strong>Price:</strong>
           <%= number_to_currency(@product.price, :unit => "$", :separator => ".") %>
         </p>
-
-        <p>
-          <%= @product.product_price_updates.previous_price %><br />
-          <%= @product.product_price_updates.updated_price %>
-          <%= @product.product_price_updates.created_at%><br />
-          <%= @product.product_price_updates.updated_at%>
-          <%= @product.product_price_updates.status%>
-
-        </p>
-
        
 
         <%= link_to 'Edit', edit_product_path(@product) %> |
         <%= link_to 'Back', products_path %>
 </div>
+<% if @product.product_price_updates.length > 0 %>
+<table class='table' style="width:80%;margin: 0px auto">
+  <caption><h2>History</h2></caption>
+  <thead>
+    <tr>
+      <th>Time</th>
+      <th>Previous Price</th>
+      <th>Latest Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @product.product_price_updates.each do |price_update| %>
+      <tr>
+        <td><%= price_update.created_at.to_s(:long) %></td>
+        <td><%= price_update.previous_price %></td>
+        <td><%= price_update.updated_price %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
