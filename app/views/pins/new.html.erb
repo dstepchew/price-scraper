@@ -1,7 +1,7 @@
 <div class="container">
-<h1>New pin</h1>
-
-<%= render 'form' %>
-
+<h1>Track A New Item</h1>
+	<div class="container">
+	<%= render 'form', :pin => @pin %>
+	</div>
 <%= link_to 'Back', pins_path %>
 </div>
