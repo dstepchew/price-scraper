@@ -1,12 +1,12 @@
-<div class="container">
-<%= form_for @pin, html: { multipart: true } do |f| %>
 
-  <% if @pin.errors.any? %>
+<%= form_for pin, html: { multipart: true } do |f| %>
+
+  <% if pin.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@pin.errors.count, "error") %> prohibited this pin from being saved:</h2>
 
       <ul>
-      <% @pin.errors.full_messages.each do |msg| %>
+      <% pin.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -15,8 +15,8 @@
 
 
 
- <div class="form-group">
-    <%= f.label :url %>
+ <div class="form-group" id="pin-url-field">
+    <%= f.label :url, "Item URL (copy and paste from your browser)" %>
     <%= f.text_field :url, class: "form-control" %>
   </div>
 
@@ -33,7 +33,7 @@
   </div>
 
   <div class="form-group">
-    <%= f.submit class: "btn btn-primary" %>
+    <%= f.submit "Track it, Marla!", class: "btn btn-primary" %>
   </div>
 <% end %>
-</div>
+

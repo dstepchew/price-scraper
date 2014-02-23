@@ -60,7 +60,7 @@ class PinsController < ApplicationController
           @pin.image = open(product_imageurl)
           @pin.product_id = product.id
           if @pin.save
-            redirect_to @pin, notice: 'Pin was successfully created.'
+            redirect_to @pin, notice: "Lucky you! Marla is now tracking this item for you."
           else
             render action: 'new'
           end
@@ -71,7 +71,7 @@ class PinsController < ApplicationController
       else
         @pin.product_id = product.id
         if @pin.save
-          redirect_to @pin, notice: 'Pin was successfully created.'
+          redirect_to @pin, notice: "Lucky you! Marla is now tracking this item for you."
         else
           render action: 'new'
         end
@@ -84,7 +84,7 @@ class PinsController < ApplicationController
 
   def update
     if @pin.update(pin_params)
-      redirect_to @pin, notice: 'Pin was successfully updated.'
+      redirect_to @pin, notice: 'Tracking was successfully updated.'
     else
       render action: 'edit'
     end
@@ -103,7 +103,7 @@ class PinsController < ApplicationController
 
     def correct_user
       @pin = current_user.pins.find_by(id: params[:id])
-      redirect_to pins_path, notice: "Not authorized to edit this pin" if @pin.nil?
+      redirect_to pins_path, notice: "Not authorized to edit this tracking" if @pin.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
