@@ -1,5 +1,11 @@
 <div class="container">
-<%= link_to 'Back', pins_path %>
+
+<ol class="breadcrumb">
+  <li><%= link_to 'Home', root_path %></li>
+  <li><%= link_to 'Tracked Items', pins_path %></li>
+  <li class="active">Your Item</li>
+</ol>
+
 
 <div class="row">
   <div class="col-md-offset-2 col-md-8">

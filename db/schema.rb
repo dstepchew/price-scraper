@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140215080658) do
+ActiveRecord::Schema.define(version: 20140303003709) do
 
-  create_table "pins", force: true do |t|
+  create_table "Pins", force: true do |t|
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -28,20 +28,11 @@ ActiveRecord::Schema.define(version: 20140215080658) do
     t.integer  "store_id"
   end
 
-  add_index "pins", ["url"], name: "index_pins_on_url"
-  add_index "pins", ["user_id"], name: "index_pins_on_user_id"
-  add_index "pins", ["web_address"], name: "index_pins_on_web_address"
+  add_index "Pins", ["url"], name: "index_pins_on_url"
+  add_index "Pins", ["user_id"], name: "index_pins_on_user_id"
+  add_index "Pins", ["web_address"], name: "index_pins_on_web_address"
 
-  create_table "product_price_updates", force: true do |t|
-    t.integer  "pin_id"
-    t.decimal  "previous_price"
-    t.decimal  "updated_price"
-    t.string   "status"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "products", force: true do |t|
+  create_table "Products", force: true do |t|
     t.string   "name"
     t.text     "description"
     t.string   "imageurl"
@@ -52,7 +43,16 @@ ActiveRecord::Schema.define(version: 20140215080658) do
     t.integer  "store_id"
   end
 
-  add_index "products", ["store_id"], name: "index_products_on_store_id"
+  add_index "Products", ["store_id"], name: "index_products_on_Store_id"
+
+  create_table "product_price_updates", force: true do |t|
+    t.integer  "pin_id"
+    t.decimal  "previous_price"
+    t.decimal  "updated_price"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "stores", force: true do |t|
     t.string   "name"
@@ -69,19 +69,19 @@ ActiveRecord::Schema.define(version: 20140215080658) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "image_remote_url"
-    t.boolean  "image_uses_relative_path"
     t.string   "salepriceselector"
+    t.boolean  "image_uses_relative_path"
     t.boolean  "sales_price_selector",     limit: 255
     t.string   "price_selector_2"
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 20140215080658) do
     t.datetime "updated_at"
     t.string   "name"
     t.string   "username"
+    t.boolean  "admin",                  default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
