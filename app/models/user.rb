@@ -8,4 +8,8 @@ class User < ActiveRecord::Base
   has_many :pins
 
    validates :name, uniqueness: { case_sensitive: false, message: "this username has been taken" }
+
+  def admin?
+    role == 'ADMIN'
+  end
 end

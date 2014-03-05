@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>Listing Exceptions</h1>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Store</th>
+      <th>Product URL</th>
+      <th>Message</th>
+      <th>Backtrace</th>
+      <th>Time</th>
+      <th>Update store</th>
+      <th>Retry</th>
+      <th></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @selector_exceptions.each do |store_exception| %>
+      <tr>
+        <td><%= link_to store_exception.store.name, store_exception.store %></td>
+        <td><%= store_exception.url %></td>
+        <td><%= store_exception.message %></td>
+        <td><%= store_exception.backtrace.html_safe if store_exception.backtrace %></td>
+        <td><%= store_exception.created_at.to_s(:long) %></td>
+        <td><%= link_to "Update", edit_store_path(store_exception.store), class: 'btn btn-success' %></td>
+        <td><%= link_to "Retry", retry_pin_selector_exception_path(store_exception), class: 'btn btn-success' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

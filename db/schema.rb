@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140215080658) do
+ActiveRecord::Schema.define(version: 20140302180838) do
 
   create_table "pins", force: true do |t|
     t.string   "description"
@@ -54,6 +54,17 @@ ActiveRecord::Schema.define(version: 20140215080658) do
 
   add_index "products", ["store_id"], name: "index_products_on_store_id"
 
+  create_table "selector_exceptions", force: true do |t|
+    t.integer  "store_id"
+    t.text     "message"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "url"
+    t.text     "backtrace"
+    t.integer  "user_id"
+  end
+
   create_table "stores", force: true do |t|
     t.string   "name"
     t.string   "url"
@@ -90,6 +101,7 @@ ActiveRecord::Schema.define(version: 20140215080658) do
     t.datetime "updated_at"
     t.string   "name"
     t.string   "username"
+    t.string   "role"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

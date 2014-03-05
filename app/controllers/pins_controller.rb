@@ -65,7 +65,14 @@ class PinsController < ApplicationController
             render action: 'new'
           end
         rescue => exp
-          flash[:notice] = exp.message
+          SelectorException.create(
+              message: exp.message,
+              url: pin_url,
+              store_id: store.id,
+              backtrace: exp.backtrace[0..5].join("<br/>"),
+              user_id: current_user.id
+          )
+          flash[:notice] = "Failed to implement tracker on the product. Administrator has been notified and issue shall be resolved shortly."
           render action: 'new'
         end
       else
