@@ -15,7 +15,7 @@ html,body
 height:100%;
 }
 
-body { padding-top: 50px; }
+body { padding-top: 70px; }
 
 #wrap
 {
@@ -56,6 +56,8 @@ footer {
 	padding-top:20px;
 }
 
-#add-pin #pin-url-field {
+#add-pin #pin-url-field, #edit-pin #pin-url-field {
 	display:none;
 }
+
+

@@ -1,8 +1,26 @@
+
 <div class="container">
-<h1>Editing pin</h1>
-	<div class="container">
-	<%= render 'form', :pin => @pin %>
+<ol class="breadcrumb">
+  <li><%= link_to 'Home', root_path %></li>
+  <li><%= link_to 'Tracked Items', pins_path %></li>
+  <li class="active">Edit Your Item</li>
+</ol>
+<h1>Edit Your Item</h1>
+	<div class="container" id="edit-pin">
+		<div class="row">
+        	<div class="col-md-6">
+	 <%= image_tag @pin.image.url(:medium) %>
+	 		</div>
+	 		<div class="col-md-6">
+	 <%= render 'form', :pin => @pin %>
+	 		</div>
+	 	</div>
+	
 	</div>
-<%= link_to 'Show', @pin %> |
-<%= link_to 'Back', pins_path %>
+<br><br>
+	<div class="well">
+	<%= link_to pins_path do %>
+              <span class="glyphicon glyphicon-remove"></span> Cancel
+            <% end %>
+	</div>.
 </div>

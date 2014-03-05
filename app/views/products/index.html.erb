@@ -17,7 +17,7 @@
         
 
 
-
+        <%# if user_signed_in? && current_user.admin? %>
           <div class="actions">
            <%= link_to edit_product_path(product) do %>
               <span class="glyphicon glyphicon-edit"></span>
@@ -25,10 +25,10 @@
             <% end %>
             <%= link_to product, method: :delete, data: { confirm: 'Are you sure?' } do %>
               <span class="glyphicon glyphicon-trash"></span>
-              Delete
-           
+              Delete 
           </div>
-        <% end %>
+          <% end %>
+        <%# end %>
       </div>
     </div>
   <% end %>
