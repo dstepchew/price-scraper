@@ -5,7 +5,7 @@ $font-family-sans-serif:                'Lato', 'Helvetica Neue', Helvetica, Ari
 $navbar-height:                                        45px;
 $navbar-default-bg:                          white;
 $navbar-default-brand-color:      #c0392b;
-$brand-primary:                                    #c0392b;
+$brand-primary:                                    #ee4254;
 $jumbotron-bg:                                         white;
 
 @import 'bootstrap';
@@ -21,6 +21,11 @@ body { padding-top: 70px; }
 {
 min-height: 100%;
 }
+
+#wrap, #main, .container, .jumbotron {
+	position:relative;
+}
+
 .center {
      text-align: center;
 }
@@ -29,7 +34,9 @@ min-height: 100%;
      font-weight: bold;
 }
 
-
+.btn {
+	text-shadow:none;
+}
 
 #main
 {
@@ -37,6 +44,29 @@ overflow:auto;
 padding-bottom:240px; /* this needs to be bigger than footer height*/
 }
 
+#splash 
+{
+	background-image: url(https://s3.amazonaws.com/marlaknows/images/lv-baglady.jpg);
+	background-repeat: no-repeat;
+	
+	background-size: cover;
+	background-position:bottom -20px;
+	opacity:.4;
+	background-color: #000;
+	position:absolute;
+	height:100%;width:100%;display:block;
+	top:0px;
+	left:0px;
+	z-index:1;
+}
+
+#intro {
+	color: #FFF;
+	text-shadow: 1px 1px 0px #000;
+	position:relative;
+	z-index:100;
+	margin-top:-20px;
+}
 
 
 footer {

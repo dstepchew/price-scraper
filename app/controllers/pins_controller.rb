@@ -72,7 +72,7 @@ class PinsController < ApplicationController
               backtrace: exp.backtrace[0..5].join("<br/>"),
               user_id: current_user.id
           )
-          flash[:notice] = "Failed to implement tracker on the product. Administrator has been notified and issue shall be resolved shortly."
+          flash[:notice] = "Marla is having trouble with this item. She has notified her son in law to fix this problem right away so try again soon."
           render action: 'new'
         end
       else
