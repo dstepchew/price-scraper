@@ -1,7 +1,8 @@
-@import url(http://fonts.googleapis.com/css?family=Lato:400,700);
+@import url(http://fonts.googleapis.com/css?family=Neuton:400,700|Lato:400,700);
 
 $body-bg:                                                   #ecf0f1;
 $font-family-sans-serif:                'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-family-serif: 					'Neuton', 'times', serif;
 $navbar-height:                                        45px;
 $navbar-default-bg:                          white;
 $navbar-default-brand-color:      #c0392b;
@@ -16,7 +17,9 @@ height:100%;
 }
 
 body { padding-top: 70px; }
+body.home { padding-top: 45px; }
 
+.serif { font-family:'Neuton', 'times', serif; }
 #wrap
 {
 min-height: 100%;
@@ -29,6 +32,12 @@ min-height: 100%;
 .center {
      text-align: center;
 }
+
+.clear {
+	clear:both;
+}
+
+h1, h2, h3, h4 { font-family:'Neuton', 'times', serif; }
 
 .navbar-brand {
      font-weight: bold;
@@ -92,6 +101,10 @@ padding-bottom:240px; /* this needs to be bigger than footer height*/
 	width:100%;
 	height:100%;
 	
+}
+
+.w-iconbox-icon {
+	font-size:30px;
 }
 
 .carousel-inner .item {

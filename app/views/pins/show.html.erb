@@ -8,24 +8,22 @@
 
 
 <div class="row">
-  <div class="col-md-offset-2 col-md-8">
+  <div class="col-md-6">
     <div class="panel panel-default">
       <div class="panel-heading center">
         <%= image_tag @pin.image.url(:medium) %>
       </div>
       <div class="panel-body">
-        <p><%= @pin.description %></p>
+        <h2><%= @pin.description %></h2>
         <p>
-		<strong>Product</strong>
+		
 			<%= link_to @pin.product.name, @pin.product %>
 		</p>
 		<p>
 			 <strong>Web Address:</strong>
 		 	 <%= @pin.url %>
 			</p>
-			<p>
-				<%= number_to_currency(@pin.product.price, :unit => "$", :separator => ".") %>
-			</p>
+			
         <p><strong><%= @pin.user.name if @pin.user %></strong></p>
 
         <% if @pin.user == current_user %>
@@ -38,5 +36,53 @@
       </div>
     </div>
   </div>
+  
+
+
+  <div class="col-md-6">
+
+         <h3 class="text-center">
+           <strong>Currently:</strong>
+          <%= number_to_currency(@pin.product.price, :unit => "$", :separator => ".") %>
+          </h3>
+
+           <% if @pin.product.product_price_updates.length > 0 %>
+          <div class="panel panel-default">
+            
+            <div class="panel-heading"><h3 class="center">Price History</h3>
+            </div>
+                
+              <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Date/Time</th>
+                  <th>Previous Price</th>
+                  <th>New Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @pin.product.product_price_updates.each do |price_update| %>
+                  <tr>
+                    <td><%= price_update.created_at.to_s(:long) %></td>
+                    <td><%= number_to_currency(price_update.previous_price, :unit => "$", :separator => ".") %></td>
+                    <td><%= number_to_currency(price_update.updated_price, :unit => "$", :separator => ".") %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+              </table>
+          </div>
+          
+
+        <% end %>
+        <center>
+          <%= link_to "Purchase This Item", @pin.url, class: "btn btn-lg btn-primary", target: '_blank' %> 
+          <%= link_to @pin, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <p style="padding:20px;"><span class="glyphicon glyphicon-trash"></span>
+              Stop Tracking Item</p>
+            <% end %>
+          
+          </center>
+                 
+  </div>    
 </div>
 </div>
