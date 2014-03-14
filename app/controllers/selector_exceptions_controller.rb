@@ -1,8 +1,14 @@
 class SelectorExceptionsController < ApplicationController
 
+
+
   def index
     @selector_exceptions = SelectorException.all
   end
+
+
+
+   
 
   def retry_pin
     @selector_exception = SelectorException.find params[:id]
@@ -63,4 +69,12 @@ class SelectorExceptionsController < ApplicationController
       redirect_to action: :index
     end
   end
+
+def destroy
+   @selector_exception = SelectorException.find params[:id]
+    @selector_exception.destroy
+    redirect_to selector_exceptions_url
+  end
+
+
 end

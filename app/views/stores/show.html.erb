@@ -24,7 +24,7 @@
   <strong>Products:</strong>
    <ul>
    <% for product in @store.products %>
-      <li><%= product.name %></li>
+      <li><%= link_to product.name, edit_product_path(product) %></li>
     <% end %>
     </ul>
 </p>
