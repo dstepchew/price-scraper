@@ -77,6 +77,7 @@ class PinsController < ApplicationController
         end
       else
         @pin.product_id = product.id
+        @pin.image = open(product.imageurl)
         if @pin.save
           redirect_to @pin, notice: "Lucky you! Marla is now tracking this item for you."
         else

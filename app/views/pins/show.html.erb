@@ -20,11 +20,11 @@
 			<%= link_to @pin.product.name, @pin.product %>
 		</p>
 		<p>
-			 <strong>Web Address:</strong>
-		 	 <%= @pin.url %>
+			 <strong>Web Address:</strong><br />
+		 	 <%= link_to @pin.url, @pin.url %>
 			</p>
 			
-        <p><strong><%= @pin.user.name if @pin.user %></strong></p>
+        <p style="display:none;"><strong><%= @pin.user.name if @pin.user %></strong></p>
 
         <% if @pin.user == current_user %>
          	<%= link_to edit_pin_path(@pin) do %>
