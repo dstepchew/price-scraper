@@ -47,6 +47,8 @@ gem 'will_paginate'
 
 gem 'will_paginate-bootstrap'
 
+gem 'oink'
+
 
 group :development, :test do
      gem 'sqlite3'

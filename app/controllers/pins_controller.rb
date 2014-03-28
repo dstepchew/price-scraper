@@ -72,7 +72,7 @@ class PinsController < ApplicationController
               backtrace: exp.backtrace[0..5].join("<br/>"),
               user_id: current_user.id
           )
-          flash[:notice] = "Marla is having trouble with this item. She has notified her son-in-law to fix this problem right away so try again soon."
+          flash[:notice] = "Marla is having trouble with this item and she blames her daughter. Try again soon."
           render action: 'new'
         end
       else
@@ -85,7 +85,7 @@ class PinsController < ApplicationController
         end
       end
     else
-      flash[:notice] = 'This store is not in our database, please contact us to add this store before you can create this pin.'
+      flash[:notice] = 'Marla has not visited this store yet, but she will soon. Please try another store.'
       render action: 'new'
     end
   end
