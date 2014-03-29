@@ -2,10 +2,9 @@
 
 			belongs_to :store
 			validates_presence_of :url, :price, :name
-      has_many :pins, :allow_destroy => true
+      has_many :pins, :dependent => :destroy
       has_many :product_price_updates, through: :pins
-			accepts_nested_attributes_for :pins
-
+			accepts_nested_attributes_for :pins, :allow_destroy => true
 
 			#private
 			#url = "http://www.medelita.com/lab-coat-callia.html"
