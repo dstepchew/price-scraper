@@ -5,14 +5,20 @@
 
 		<div class="row">
 
-			<div class="col-md-8">
-
+			<div class="col-md-4">
+				<h2>Marla Knows Prices</h2>
+				<h3>Marla hasn't paid full price for anything since, like, 1982.</h3>
+				<p>When Marla enters a store, she's done her research.  Have you?  Probably not.  At least not like Marla.</p>
 			</div>
 
 			<div class="col-md-4">
-			<h2>Marla Knows Prices</h2>
-			<h3>Marla hasn't paid full price for anything since, like, 1982.</h3>
-			<p>When Marla enters a store, she's done her research.  Have you?  Probably not.  At least not like Marla.</p><p>Her gift for tracking prices is a burden that weighs heavily on her, and she recently decided to help you because she simply cannot stand by and watch you spend all that money that you could be saving.</p>
+				<img src="https://s3.amazonaws.com/marlaknows/images/marla.jpg" class="img-responsive" alt="marla">
+			</div>
+
+			<div class="col-md-4">
+				<h2>Marla Wants To Help</h2>
+				<p>Marla simply cannot stand by and watch you spend all that money that you could be saving.</p>
+				<p>I mean, have you seen the price of gas these days?</p>
 			</div>
 
 
@@ -21,5 +27,50 @@
 
 
 	</div>
+
+	<div class="container page-header">
+	<div class="col-md-4 center">
+		<div class="w-iconbox iconpos_top with_circle">
+						<div class="w-iconbox-h">
+							<%= link_to products_path, class: "w-iconbox-link" do %>
+							<div class="w-iconbox-icon">
+								<i class="glyphicon glyphicon-heart"></i>		</div>
+							<h4 class="w-iconbox-title serif">Find Your Favorite Items Online</h4>
+							<% end %>
+							<div class="w-iconbox-text">
+								<p>Search the web or within Marlaknows and find the web page of your favorite products.</p>
+							</div>
+						</div>
+		</div>
+	</div>
+	<div class="col-md-4 center">
+		<div class="w-iconbox iconpos_top with_circle">
+						<div class="w-iconbox-h">
+							<%= link_to new_pin_path, class: "w-iconbox-link" do %>
+							<div class="w-iconbox-icon">
+								<i class="glyphicon glyphicon-eye-open"></i>		</div>
+							<h4 class="w-iconbox-title serif">Tell Marla What To Track</h4>
+							<% end %>
+							<div class="w-iconbox-text">
+								<p>Copy and paste the URL web address of the product into Marlaknows. Just click "track new item."</p>
+							</div>
+						</div>
+		</div>
+	</div>
+	<div class="col-md-4 center">
+		<div class="w-iconbox iconpos_top with_circle">
+						<div class="w-iconbox-h">
+							<%= link_to about_path, class: "w-iconbox-link" do %>
+							<div class="w-iconbox-icon">
+								<i class="glyphicon glyphicon-glass"></i>		</div>
+							<h4 class="w-iconbox-title serif">Wait For The Item To Go On Sale</h4>
+							<% end %>
+							<div class="w-iconbox-text">
+								<p>Sit back and relax while Marla does the work for you. Maybe have a drink? The possibilities are endless.</p>
+							</div>
+						</div>
+		</div>
+	</div>
+</div>
 
 </div>

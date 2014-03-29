@@ -148,7 +148,9 @@
                             <table border="0" cellpadding="18" cellspacing="0" class="mcnTextContentContainer" width="100%" style="border: 1px solid #999999;background-color: #EBEBEB;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
                                 <tbody><tr>
                                     <td valign="top" class="mcnTextContent" style="mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #606060;font-family: Helvetica;font-size: 15px;line-height: 150%;text-align: left;">
-                                        <strong><%= @price_update.pin.product.name %></strong><br>
+                                        <%= link_to image_tag(@price_update.pin.image.url(:medium)), @price_update.pin %>
+
+                                        <strong><%= link_to @price_update.pin, @price_update.pin.product.name %></strong><br>
 <strong>Previous price:</strong> <%= number_to_currency(@price_update.previous_price , :unit => "$", :separator => ".") %><br>
 <strong>New price:</strong> <%= number_to_currency(@price_update.updated_price , :unit => "$", :separator => ".") %>
                                     </td>
@@ -209,7 +211,7 @@
                         
                         <td valign="top" class="mcnTextContent" style="padding-top: 9px;padding-right: 18px;padding-bottom: 9px;padding-left: 18px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #606060;font-family: Helvetica;font-size: 11px;line-height: 125%;text-align: left;">
                         
-                            <em>Copyright © 2014 Marlaknows, All rights reserved.</em>
+                            <em>Copyright &copy; <%= Time.now.year %> Marlaknows, All Rights Reserved.</em>
 <br>
 
     <br>

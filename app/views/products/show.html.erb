@@ -79,12 +79,16 @@
           
 
         <% end %>
-        <center>
-          <%= link_to "Purchase This Item", @product.url, class: "btn btn-lg btn-primary" %> 
-          <button type="button" class="btn btn-default btn-lg dropdown-toggle" data-toggle="collapse" data-target="#product-track">
-          Track This Item
-          </button>
-          </center>
+          <div class="row">
+           <div class="col-md-6 center">
+              <%= link_to "Purchase This Item", @product.url, class: "btn btn-primary btn-lg btn-block", target: "_blank" %> 
+            </div>
+            <div class="col-md-6 center">
+              <button type="button" class="btn btn-default btn-lg btn-block dropdown-toggle" data-toggle="collapse" data-target="#product-track" >
+              Track This Item
+              </button>
+            </div>
+          </div>
                   <div id="product-track" class="collapse">
 
                       <div id="add-pin" class="well">
