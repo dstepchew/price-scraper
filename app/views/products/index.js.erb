@@ -1,0 +1,10 @@
+$boxes = $('<%= j render(@products) %>')
+
+$('#products').append( $boxes ).imagesLoaded( function(){
+    $('#products').masonry( 'reload');
+});
+<% if @pins.next_page %>
+    $('.pagination').replaceWith('<%= j will_paginate(@products) %>');
+<% else %>
+    $('.pagination').remove();
+<% end %>

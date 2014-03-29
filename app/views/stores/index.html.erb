@@ -1,3 +1,5 @@
+<%= render 'pages/home' unless user_signed_in? && current_user.admin?  %>
+
 <div class="container">
 <h1>Listing stores</h1>
 
@@ -21,7 +23,7 @@
         <td><%= store.description %></td>
         <td><%= link_to 'Show', store, class: 'btn btn-success' %></td>
         <td><%= link_to 'Edit', edit_store_path(store), class: 'btn btn-success' %></td>
-        <td><%= link_to 'Destroy', store, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+        <td><%= link_to 'Delete', store, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
       </tr>
     <% end %>
   </tbody>
