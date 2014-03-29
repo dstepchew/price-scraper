@@ -4,6 +4,18 @@ class ApplicationController < ActionController::Base
  protect_from_forgery with: :exception
  before_filter :configure_permitted_parameters, if: :devise_controller?
 
+
+ APP_DOMAIN = 'www.marlaknows.com'
+  before_filter :ensure_domain
+
+  def ensure_domain
+    unless request.env['HTTP_HOST'] == APP_DOMAIN || Rails.env.development?
+      redirect_to "http://#{APP_DOMAIN}", :status => 301
+    end
+  end
+
+
+
 protected
 
  def configure_permitted_parameters

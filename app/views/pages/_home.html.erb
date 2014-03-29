@@ -41,15 +41,15 @@
 	</div>
 </div>
 
-<div class="container">
+<div class="container page-header">
 	<div class="col-md-4 center">
 		<div class="w-iconbox iconpos_top with_circle">
 						<div class="w-iconbox-h">
-							<a class="w-iconbox-link" href="#">
+							<%= link_to products_path, class: "w-iconbox-link" do %>
 							<div class="w-iconbox-icon">
 								<i class="glyphicon glyphicon-heart"></i>		</div>
 							<h4 class="w-iconbox-title serif">Find Your Favorite Items Online</h4>
-							</a>
+							<% end %>
 							<div class="w-iconbox-text">
 								<p>Search the web or within Marlaknows and find the web page of your favorite products.</p>
 							</div>
@@ -59,11 +59,11 @@
 	<div class="col-md-4 center">
 		<div class="w-iconbox iconpos_top with_circle">
 						<div class="w-iconbox-h">
-							<a class="w-iconbox-link" href="#">
+							<%= link_to new_pin_path, class: "w-iconbox-link" do %>
 							<div class="w-iconbox-icon">
 								<i class="glyphicon glyphicon-eye-open"></i>		</div>
 							<h4 class="w-iconbox-title serif">Tell Marla What To Track</h4>
-							</a>
+							<% end %>
 							<div class="w-iconbox-text">
 								<p>Copy and paste the URL web address of the product into Marlaknows. Just click "track new item."</p>
 							</div>
@@ -73,11 +73,11 @@
 	<div class="col-md-4 center">
 		<div class="w-iconbox iconpos_top with_circle">
 						<div class="w-iconbox-h">
-							<a class="w-iconbox-link" href="#">
+							<%= link_to about_path, class: "w-iconbox-link" do %>
 							<div class="w-iconbox-icon">
 								<i class="glyphicon glyphicon-glass"></i>		</div>
 							<h4 class="w-iconbox-title serif">Wait For The Item To Go On Sale</h4>
-							</a>
+							<% end %>
 							<div class="w-iconbox-text">
 								<p>Sit back and relax while Marla does the work for you. Maybe have a drink? The possibilities are endless.</p>
 							</div>
