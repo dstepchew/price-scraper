@@ -1,5 +1,5 @@
 class PriceUpdate < ActionMailer::Base
-  default from: "dstepchew@gmail.com"
+  default from: "alerts@marlaknows.com"
 
   def user_notification(price_update)
     @price_update = price_update
