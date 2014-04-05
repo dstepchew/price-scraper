@@ -1,0 +1,49 @@
+
+
+
+
+
+
+
+<div id="products" class="transitions-enabled infinite-scroll clearfix">
+
+  <% @products.each do |product| %>
+    <div class="box panel panel-default">
+      <%= link_to (image_tag product.imageurl, class: "img-responsive"), product %>
+      <div class="panel-body">
+        <%= product.name %><br />
+        <%= link_to product.store.try(:name), product.url, target: '_blank' %><br />
+        <h4><%= number_to_currency(product.price, :unit => "$", :separator => ".") %>
+</h4>
+        
+
+
+        <% if user_signed_in? && current_user.admin? %>
+          <div class="actions">
+           <%= link_to edit_product_path(product) do %>
+              <span class="glyphicon glyphicon-edit"></span>
+              Edit
+            <% end %>
+            <%= link_to product, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <span class="glyphicon glyphicon-trash"></span>
+              Delete 
+              <% end %>
+            
+                           
+             
+           
+               
+
+          </div>
+          
+        <% end %>
+         
+              
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="center">
+   <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
+</div>

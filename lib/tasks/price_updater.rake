@@ -16,7 +16,7 @@ namespace :scrap do
             product_price = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s.to_f
           end
 
-          if product_price.to_f != pin.product.price.to_f
+          if product_price.to_f != pin.product.price.to_f unless product_price.to_f.nil?
             ProductPriceUpdate.create(
               pin_id: pin.id,
               previous_price: pin.product.price,

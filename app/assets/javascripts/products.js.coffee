@@ -2,11 +2,13 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-jQuery ->
+$ ->
   $('#products').imagesLoaded ->
     $('#products').masonry
       itemSelector: '.box'
       isFitWidth: true
+
+
 
 
 if $('.pagination').length
@@ -17,3 +19,6 @@ if $('.pagination').length
                 $('.pagination').text("Fetching more items...")
                 $.getScript(url)
             $(window).scroll()
+
+
+
