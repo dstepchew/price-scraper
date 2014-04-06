@@ -1,0 +1,45 @@
+
+
+
+
+<div class="container">
+<div class="panel panel-default">
+  <div class="panel-heading">
+   <h1> Contact Marla </h1>
+ 
+
+  </div>
+
+  <div class="panel-body">
+      <%= simple_form_for @contact, html: { multipart: true }  do |f| %>
+
+   	<div class="form-group">
+        <%= f.label :name, "Your Name" %>
+        <%= f.text_field :name, required: true, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :email, "Your Email Address" %>
+        <%= f.text_field :email, required: true, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :message, "What Can Marla Help You With?" %>
+        <%= f.text_area :message, required: false, input_html: {:rows => 10}, class: "form-control" %>
+      </div>
+      <div style="display:none;">
+      <%= f.text_field :nickname, hint: 'Leave this field blank!' %>
+      </div>
+       <div class="form-group">
+        <%= f.submit "Send Message", class: "btn btn-primary" %>
+      </div>
+
+
+   <% end %>
+  </div>
+ 
+ <div class="panel-footer">
+    <p>Having issues tracking products?  Have a suggestion for a store to add? Tell Marla! She loves hearing from you.</p>
+  </div>
+</div>
+</div>

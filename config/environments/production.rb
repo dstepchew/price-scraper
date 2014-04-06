@@ -102,4 +102,7 @@ config.paperclip_defaults = {
     :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
   }
 }
+
+
+ENV['ELASTICSEARCH_URL'] = ENV['SEARCHBOX_URL']
 end

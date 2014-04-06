@@ -5,6 +5,7 @@
         <li><%= link_to "Privacy", privacy_path %></li>
          <li><%= link_to "Terms Of Use", terms_path %>
         </li>
+        <li><%= link_to t('Contact'), new_contact_path %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>

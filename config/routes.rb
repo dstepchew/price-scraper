@@ -9,11 +9,14 @@ ZoomApp::Application.routes.draw do
   end
   resources :pins
 
+
   devise_for :users
   root "products#index"
   get "about" => "pages#about"
   get "privacy" => "pages#privacy"
   get "terms" => "pages#terms"
+
+  resources "contacts", only: [:new, :create]
 
   
   # The priority is based upon order of creation: first created -> highest priority.

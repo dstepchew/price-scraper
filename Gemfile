@@ -49,6 +49,12 @@ gem 'will_paginate-bootstrap'
 
 gem 'oink'
 
+gem 'tire'
+
+gem 'mail_form'
+
+gem 'simple_form'
+
 
 group :development, :test do
      gem 'sqlite3'
@@ -57,6 +63,7 @@ end
 group :production do
      gem 'pg'
      gem 'rails_12factor'
+
 end
 
 group :doc do
