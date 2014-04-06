@@ -1,5 +1,5 @@
 <%= render 'pages/home' unless user_signed_in? && current_user.admin?  %>
-
+<% @title = @store.name + " - Marla Knows" %>
 
 <div class="container">
 <p id="notice"><%= notice %></p>
