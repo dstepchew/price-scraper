@@ -1,6 +1,7 @@
 class SelectorExceptionsController < ApplicationController
 
 before_action :authenticate_user!
+before_filter :require_admin
 
   def index
     @selector_exceptions = SelectorException.all
