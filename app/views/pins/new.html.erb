@@ -1,9 +1,21 @@
 <% @title = 'Track A New Item - Marla Knows' %>
 
 <div class="container">
-<h1>Track A New Item</h1>
-	<div class="container">
-	<%= render 'form', :pin => @pin %>
-	</div>
-<%= link_to 'Back', pins_path %>
+
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+		    <div class="panel-title">
+		      <h1>Track A New Item</h1>
+		    </div>
+		  </div>
+		  <div class="panel-body">
+		    <%= render 'form', :pin => @pin %>
+		  </div>
+		  <div class="panel-footer">
+		  <h4>Note:
+		  Some stores may not be available for tracking yet. Marla has things to do, she can't be <em>everywhere</em> you know. </h4>
+		    <%= link_to "View List Of Available Stores", stores_path, class: "btn btn-warning" %>
+		  </div>
+		</div>
+
 </div>

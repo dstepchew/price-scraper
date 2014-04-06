@@ -25,9 +25,14 @@
         <% end %>
       </div>
     </div>
+
+   
   <% end %>
 </div>
 
 <div class="center">
    <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
 </div>
+
+ <% if (@pins.blank?) %>
+  <p class="text-center">Just kidding. She's not tracking anything yet. <br /><br /><%= link_to 'Track Something', new_pin_path, class: 'btn btn-primary' %></p><% end %>
