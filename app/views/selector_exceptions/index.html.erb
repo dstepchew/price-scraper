@@ -19,7 +19,7 @@
     <% @selector_exceptions.each do |store_exception| %>
       <tr>
         <td><%= link_to store_exception.store.name, store_exception.store %></td>
-        <td><%= link_to store_exception.url, store_exception.store %></td>
+        <td><%= link_to store_exception.url, store_exception.url, target: "_blank" %></td>
         <td><%= store_exception.message %></td>
         <td><%= store_exception.backtrace.html_safe if store_exception.backtrace %></td>
         <td><%= store_exception.created_at.to_s(:long) %></td>

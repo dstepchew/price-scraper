@@ -22,7 +22,8 @@ class PinsController < ApplicationController
     @pin = current_user.pins.build(pin_params)
     pin_url = params[:pin][:url]
 
-    pin_domain = URI.parse(pin_url).host
+    encoded_url = URI.encode(pin_url)
+    pin_domain = URI.parse(encoded_url).host
 
     store = Store.find_by_url(pin_domain)
     if store
@@ -56,7 +57,7 @@ class PinsController < ApplicationController
           product = Product.create!(
             url: pin_url,
             store_id: store.id,
-            price: product_price.gsub(",", ""),
+            price: product_price.to_s.gsub(',', '').to_i,
             name: product_name,
             imageurl: product_imageurl
           )
