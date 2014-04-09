@@ -15,6 +15,7 @@
 //= require bootstrap
 //= require turbolinks
 //= require stores
+//= require jquery.inview
 //= require jquery.turbolinks
 //= require masonry/jquery.masonry
 //= require_tree .

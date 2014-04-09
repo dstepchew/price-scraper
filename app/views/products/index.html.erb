@@ -46,7 +46,7 @@
       </div>
 
       <div class="center">
-         <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
+        <%= link_to 'Load More Products', products_path(:page => @products.next_page), :class => 'load-more-products', :remote => true if @products.next_page %>
       </div>
 
 
