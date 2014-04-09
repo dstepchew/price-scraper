@@ -33,7 +33,11 @@ class PinsController < ApplicationController
       unless product
         begin
           agent = Mechanize.new
-          page = agent.get(pin_url)
+          begin
+            page = agent.get(pin_url)
+          rescue => exp
+            raise "Invalid product url"
+          end
           product_price = nil
 
           if store.sales_price_selector
@@ -52,7 +56,7 @@ class PinsController < ApplicationController
           product = Product.create!(
             url: pin_url,
             store_id: store.id,
-            price: product_price,
+            price: product_price.gsub(",", ""),
             name: product_name,
             imageurl: product_imageurl
           )
@@ -65,14 +69,19 @@ class PinsController < ApplicationController
             render action: 'new'
           end
         rescue => exp
-          SelectorException.create(
-              message: exp.message,
-              url: pin_url,
-              store_id: store.id,
-              backtrace: exp.backtrace[0..5].join("<br/>"),
-              user_id: current_user.id
-          )
-          flash[:notice] = "Marla is having trouble with this item and she blames her daughter. Try again soon."
+          if exp.message == "Invalid product url"
+            flash[:notice] = "Item url seems to be invalid..."
+          else
+            SelectorException.create(
+                message: exp.message,
+                url: pin_url,
+                store_id: store.id,
+                backtrace: exp.backtrace[0..5].join("<br/>"),
+                user_id: current_user.id
+            )
+            flash[:notice] = "Marla is having trouble with this item and she blames her daughter. Try again soon."
+          end
+
           render action: 'new'
         end
       else

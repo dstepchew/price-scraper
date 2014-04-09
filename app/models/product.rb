@@ -8,7 +8,7 @@
       has_many :pins, :dependent => :destroy
       has_many :product_price_updates, through: :pins
 			accepts_nested_attributes_for :pins, :allow_destroy => true
-
+      self.per_page = 6
 
 
 			#private
