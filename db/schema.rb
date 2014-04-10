@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140302180838) do
+ActiveRecord::Schema.define(version: 20140410071255) do
 
   create_table "Pins", force: true do |t|
     t.string   "description"
@@ -32,19 +32,6 @@ ActiveRecord::Schema.define(version: 20140302180838) do
   add_index "Pins", ["user_id"], name: "index_pins_on_user_id"
   add_index "Pins", ["web_address"], name: "index_pins_on_web_address"
 
-  create_table "Products", force: true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.string   "imageurl"
-    t.string   "url"
-    t.decimal  "price"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "store_id"
-  end
-
-  add_index "Products", ["store_id"], name: "index_products_on_Store_id"
-
   create_table "product_price_updates", force: true do |t|
     t.integer  "pin_id"
     t.decimal  "previous_price"
@@ -53,6 +40,19 @@ ActiveRecord::Schema.define(version: 20140302180838) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "products", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "imageurl"
+    t.text     "url",         limit: 255
+    t.decimal  "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "store_id"
+  end
+
+  add_index "products", ["store_id"], name: "index_products_on_Store_id"
 
   create_table "selector_exceptions", force: true do |t|
     t.integer  "store_id"
