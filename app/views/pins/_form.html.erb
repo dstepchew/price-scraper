@@ -17,7 +17,7 @@
 
  <div class="form-group" id="pin-url-field">
     <%= f.label :url, "Copy (control+c) and paste (control+v) the item URL address from your browser" %>
-    <%= f.text_field :url, class: "form-control" %>
+    <%= f.text_field :url, maxlength: 225, class: "form-control" %>
     <span style="color:red" id='notice'></span>
   </div>
 

@@ -57,7 +57,7 @@ class PinsController < ApplicationController
           product = Product.create!(
             url: pin_url,
             store_id: store.id,
-            price: product_price.to_s.gsub(',', '').to_i,
+            price: product_price.to_s.gsub(",", "").to_i,
             name: product_name,
             imageurl: product_imageurl
           )

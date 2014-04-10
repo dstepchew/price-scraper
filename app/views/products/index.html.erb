@@ -14,7 +14,7 @@
             <div class="panel-body">
               <%= product.name %><br />
               <%= link_to product.store.try(:name), product.url, target: '_blank' %><br />
-              <h4><%= number_to_currency(product.price, :unit => "$", :separator => ".") %>
+              <h4><%= number_to_currency(product.price, unit: "$", separator: ".") %>
       </h4>
               
 
