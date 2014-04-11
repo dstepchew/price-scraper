@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20140410071255) do
     t.string   "name"
     t.text     "description"
     t.string   "imageurl"
-    t.text     "url",         limit: 255
+    t.text     "url"
     t.decimal  "price"
     t.datetime "created_at"
     t.datetime "updated_at"
