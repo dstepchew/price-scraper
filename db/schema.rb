@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140411050737) do
+ActiveRecord::Schema.define(version: 20140411052710) do
 
-  create_table "Pins", force: true do |t|
+  create_table "pins", force: true do |t|
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -23,14 +23,14 @@ ActiveRecord::Schema.define(version: 20140411050737) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "web_address"
-    t.string   "url"
+    t.text     "url"
     t.integer  "product_id"
     t.integer  "store_id"
   end
 
-  add_index "Pins", ["url"], name: "index_pins_on_url"
-  add_index "Pins", ["user_id"], name: "index_pins_on_user_id"
-  add_index "Pins", ["web_address"], name: "index_pins_on_web_address"
+  add_index "pins", ["url"], name: "index_pins_on_url"
+  add_index "pins", ["user_id"], name: "index_pins_on_user_id"
+  add_index "pins", ["web_address"], name: "index_pins_on_web_address"
 
   create_table "product_price_updates", force: true do |t|
     t.integer  "pin_id"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20140411050737) do
   create_table "products", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.string   "imageurl"
+    t.text     "imageurl"
     t.text     "url"
     t.decimal  "price"
     t.datetime "created_at"
