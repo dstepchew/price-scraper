@@ -4,7 +4,10 @@ namespace :scrap do
       begin
         if pin.validate_selectors
           pin_url = pin.url
-          pin_domain = URI.parse(pin_url).host
+
+            encoded_url = URI.encode(pin_url)
+            pin_domain = URI.parse(encoded_url).host
+
           store = Store.find_by_url(pin_domain)
 
           agent = Mechanize.new
