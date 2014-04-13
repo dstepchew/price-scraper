@@ -104,5 +104,5 @@ config.paperclip_defaults = {
 }
 
 
-ENV['ELASTICSEARCH_URL'] = ENV['SEARCHBOX_URL']
+#ENV['ELASTICSEARCH_URL'] = ENV['SEARCHBOX_URL']
 end
