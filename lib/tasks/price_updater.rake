@@ -11,7 +11,7 @@ namespace :scrap do
           store = Store.find_by_url(pin_domain)
 
           agent = Mechanize.new
-          page = agent.get(pin_url)
+          page = agent.get(encoded_url)
           if store.sales_price_selector
             product_price = page.search(store.price_selector_2).first.text.match(/\b\d[\d,.]*\b/).to_s.to_f if page.search(store.price_selector_2).first
             product_price = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s.to_f if ( product_price.nil? || product_price.blank? ) && page.search(store.price_selector).first
