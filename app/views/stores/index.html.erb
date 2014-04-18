@@ -9,6 +9,7 @@
       <th>Name</th>
       <th>Web Address</th>
       <th>Description</th>
+      <th>Status</th>
       <% if user_signed_in? && current_user.admin? %>
       <th></th>
       <th></th>
@@ -23,6 +24,7 @@
         <td><%= link_to store.name, store %></td>
         <td><%= link_to store.url, 'http://'+store.url, target: "_blank" %></td>
         <td><%= store.description %></td>
+        <td><%= store.status %></td>
         <% if user_signed_in? && current_user.admin? %>
         <td><%= link_to 'Show', store, class: 'btn btn-success' %></td>
         <td><%= link_to 'Edit', edit_store_path(store), class: 'btn btn-success' %></td>
