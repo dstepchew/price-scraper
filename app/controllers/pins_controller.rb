@@ -30,7 +30,6 @@ class PinsController < ApplicationController
     already_pinned = false
     current_user.pins.each do |prev_pin|
       already_pinned = true if prev_pin.product.url.to_s == pin_url.to_s
-      puts "Matched..................." if prev_pin.product.url.to_s == pin_url.to_s
     end
 
     @pin = current_user.pins.build(pin_params)
