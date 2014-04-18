@@ -82,7 +82,8 @@
             web_address: @product.url,
             url: @product.url,
             product_id: @product.id,
-            store_id: @product.store.id
+            store_id: @product.store.id,
+            image: @product.imageurl
           )
 
           respond_to do |format|
