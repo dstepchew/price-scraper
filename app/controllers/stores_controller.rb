@@ -6,7 +6,11 @@
         # GET /stores
         # GET /stores.json
         def index
-          @stores = Store.includes(:products).all
+          if current_user && current_user.admin?
+            @stores = Store.includes(:products).all
+          else
+            @stores = Store.where(status: 'Active').includes(:products).all
+          end
         end
 
         # GET /stores/1
@@ -78,6 +82,6 @@
           def store_params
             params.require(:store).permit(:name, :url, :description, :image, :image_remote_url, :product_selector,
                                           :name_selector, :price_selector, :sales_price_selector, :price_selector_2,
-                                          :image_selector, :image_uses_relative_path)
+                                          :image_selector, :image_uses_relative_path, :status)
           end
       end

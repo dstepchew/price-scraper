@@ -12,6 +12,15 @@
         <br/><%= number_to_currency(pin.product.price, :unit => "$", :separator => ".") %> 
 <br/>
         <% if pin.user == current_user %>
+
+            <% if pin.product.status == 'Inactive' %>
+              <div class="actions">
+                <span class="inactive">Inactive</span>
+                <br/>
+                <%= link_to "Stop tracking this item", pin, method: :delete %>
+              </div>
+            <% end %>
+
           <div class="actions">
            <%= link_to edit_pin_path(pin) do %>
               <span class="glyphicon glyphicon-edit"></span>

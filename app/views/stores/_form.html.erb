@@ -61,7 +61,10 @@
     <%= f.text_field :image_selector, class: "form-control" %>
         <%= f.check_box :image_uses_relative_path, {}, true %> Uses relative path
   </div>
-
+  <div class="form-group">
+    <%= f.label :status %>
+    <%= f.select :status, options_for_select(resource_statuses, @store.status) %>
+  </div>
   <div class="form-group">
     <%= f.submit class: "btn btn-primary" %>
   </div>

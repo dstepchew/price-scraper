@@ -1,17 +1,21 @@
       class ProductsController < ApplicationController
-        before_action :set_product, only: [:show, :edit, :update, :destroy]
+        before_action :set_product, only: [:show, :edit, :update, :destroy, :track]
         before_action :authenticate_user!, except: [:index, :show]
         before_filter :require_admin, except: [:index, :show]
 
         # GET /products
         # GET /products.json
         def index
-          @products = Product.order("created_at DESC").paginate(:page => params[:page], :per_page => 6)
-           respond_to do |format|
-              format.html # index.html.erb
-              format.json { render json: @products }
-              format.js
-            end
+          if current_user && current_user.admin?
+            @products = Product.order("created_at DESC").paginate(:page => params[:page], :per_page => 6)
+          else
+            @products = Product.where(status: 'Active').order("created_at DESC").paginate(:page => params[:page], :per_page => 6)
+          end
+          respond_to do |format|
+            format.html # index.html.erb
+            format.json { render json: @products }
+            format.js
+          end
         end
 
         # GET /products/1
@@ -25,8 +29,6 @@
         def new
           @product = Product.new
           @stores = Store.all
-
-          
         end
 
         # GET /products/1/edit
@@ -73,6 +75,28 @@
           end
         end
 
+        def track
+          pin = Pin.new(
+            description: 'Auto tracking item',
+            user_id: current_user.id,
+            web_address: @product.url,
+            url: @product.url,
+            product_id: @product.id,
+            store_id: @product.store.id,
+            image: @product.imageurl
+          )
+
+          respond_to do |format|
+            if pin.save
+              format.html { redirect_to products_path, notice: 'Product was successfully added to tracking.' }
+              format.json { head :no_content }
+            else
+              format.html { render action: 'edit' }
+              format.json { render json: pin.errors, status: :unprocessable_entity }
+            end
+          end
+        end
+
         private
           # Use callbacks to share common setup or constraints between actions.
           def set_product
@@ -81,6 +105,12 @@
 
           # Never trust parameters from the scary internet, only allow the white list through.
           def product_params
-            params.require(:product).permit(:name, :description, :imageurl, :url, :price, :store_id, store_attributes: [:id, :name, :description, :product_selector, :name_selector, :price_selector, :image_selector])
+            params.require(:product).permit(
+              :name, :description, :imageurl, :url, :price, :status, :store_id,
+              store_attributes: [
+                 :id, :name, :description, :product_selector,
+                :name_selector, :price_selector, :image_selector
+              ]
+            )
           end
       end

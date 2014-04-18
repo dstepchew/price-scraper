@@ -3,7 +3,7 @@ class Pin < ActiveRecord::Base
      belongs_to :product
      belongs_to :store
 
-     has_many :product_price_updates
+     has_many :product_price_updates, dependent: :destroy
 
      validates_presence_of :product, :store
   	 validates :description, presence: true

@@ -1,6 +1,7 @@
 namespace :scrap do
   task :price_update => :environment do
     Pin.all.each do |pin|
+      next if pin.product.status == "Inactive"
       begin
         if pin.validate_selectors
           pin_url = pin.url
@@ -13,13 +14,15 @@ namespace :scrap do
           agent = Mechanize.new
           page = agent.get(encoded_url)
           if store.sales_price_selector
-            product_price = page.search(store.price_selector_2).first.text.match(/\b\d[\d,.]*\b/).to_s.to_f if page.search(store.price_selector_2).first
-            product_price = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s.to_f if ( product_price.nil? || product_price.blank? ) && page.search(store.price_selector).first
+            product_price_str = page.search(store.price_selector_2).first.text.match(/\b\d[\d,.]*\b/).to_s if page.search(store.price_selector_2).first
+            product_price_str = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s if ( product_price.nil? || product_price.blank? ) && page.search(store.price_selector).first
           else
-            product_price = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s.to_f
+            product_price_str = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s
           end
+          product_price_str = product_price_str.split(".")[0]
+          product_price = product_price_str.scan(/\d/).join('')
 
-          if product_price.to_f != pin.product.price.to_f
+          if !product_price.blank? && product_price.to_f != pin.product.price.to_f
             ProductPriceUpdate.create(
               pin_id: pin.id,
               previous_price: pin.product.price,
@@ -28,8 +31,13 @@ namespace :scrap do
             )
             pin.product.update_attribute(:price, product_price)
           end
+          pin.product.update_attribute(:status, 'Active')
+        else
+          pin.product.update_attribute(:status, 'Inactive')
         end
+
       rescue => exp
+        pin.product.update_attribute(:status, 'Inactive')
         puts "Exception in retrieving updated price " + exp.message
       end
 

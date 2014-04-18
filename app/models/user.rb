@@ -12,4 +12,8 @@ class User < ActiveRecord::Base
   def admin?
     role == 'ADMIN'
   end
+
+  def tagged_products
+    pins.collect(&:product).uniq
+  end
 end

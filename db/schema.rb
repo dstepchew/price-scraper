@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140411052710) do
+ActiveRecord::Schema.define(version: 20140418065038) do
 
   create_table "pins", force: true do |t|
     t.string   "description"
@@ -50,9 +50,10 @@ ActiveRecord::Schema.define(version: 20140411052710) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "store_id"
+    t.string   "status",      default: "Active"
   end
 
-  add_index "products", ["store_id"], name: "index_products_on_Store_id"
+  add_index "products", ["store_id"], name: "index_products_on_store_id"
 
   create_table "selector_exceptions", force: true do |t|
     t.integer  "store_id"
@@ -80,10 +81,11 @@ ActiveRecord::Schema.define(version: 20140411052710) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "image_remote_url"
-    t.string   "salepriceselector"
     t.boolean  "image_uses_relative_path"
+    t.string   "salepriceselector"
     t.boolean  "sales_price_selector",     limit: 255
     t.string   "price_selector_2"
+    t.string   "status",                               default: "Active"
   end
 
   create_table "users", force: true do |t|
