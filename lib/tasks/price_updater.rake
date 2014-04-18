@@ -20,7 +20,7 @@ namespace :scrap do
           end
           product_price = product_price_str.scan(/\d/).join('')
 
-          if product_price.to_f != pin.product.price.to_f
+          if !product_price.blank? && product_price.to_f != pin.product.price.to_f
             ProductPriceUpdate.create(
               pin_id: pin.id,
               previous_price: pin.product.price,
