@@ -1,7 +1,11 @@
 ZoomApp::Application.routes.draw do
   resources :stores
-
-  resources :products
+  resources :users
+  resources :products do
+    member do
+      put :track
+    end
+  end
   resources :selector_exceptions do
     member do
       get :retry_pin

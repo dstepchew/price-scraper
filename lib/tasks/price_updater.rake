@@ -1,6 +1,7 @@
 namespace :scrap do
   task :price_update => :environment do
     Pin.all.each do |pin|
+      next if pin.product.status == "Inactive"
       begin
         if pin.validate_selectors
           pin_url = pin.url
@@ -18,6 +19,7 @@ namespace :scrap do
           else
             product_price_str = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s
           end
+          product_price_str = product_price_str.split(".")[0]
           product_price = product_price_str.scan(/\d/).join('')
 
           if !product_price.blank? && product_price.to_f != pin.product.price.to_f
@@ -29,8 +31,13 @@ namespace :scrap do
             )
             pin.product.update_attribute(:price, product_price)
           end
+          pin.product.update_attribute(:status, 'Active')
+        else
+          pin.product.update_attribute(:status, 'Inactive')
         end
+
       rescue => exp
+        pin.product.update_attribute(:status, 'Inactive')
         puts "Exception in retrieving updated price " + exp.message
       end
 

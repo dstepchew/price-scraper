@@ -4,7 +4,7 @@ class PinsController < ApplicationController
 
   def index
    @pins = current_user.pins.order("created_at DESC").paginate(:page => params[:page], :per_page => 8)
- end
+  end
 
   def show
   end
@@ -19,13 +19,17 @@ class PinsController < ApplicationController
   end
 
   def create
-
     pin_url = params[:pin][:url]
 
     encoded_url = URI.encode(pin_url)
     pin_domain = URI.parse(encoded_url).host
-
     store = Store.find_by_url(pin_domain)
+
+    unless store
+      pin_domain_fragment = pin_domain.split(".")
+      pin_domain_without_sub_domain = pin_domain_fragment[1..-1].join(".")
+      store = Store.find_by_url(pin_domain_without_sub_domain)
+    end
 
     already_pinned = false
     current_user.pins.each do |prev_pin|
@@ -59,6 +63,7 @@ class PinsController < ApplicationController
             else
               product_price_str = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s
             end
+            product_price_str = product_price_str.split(".")[0]
             product_price = product_price_str.scan(/\d/).join('')
 
             product_name  = page.search(store.name_selector).first.text
@@ -124,6 +129,7 @@ class PinsController < ApplicationController
 
   def destroy
     @pin.destroy
+    flash[:notice] = "Price tracking stopped successfully."
     redirect_to pins_url
   end
 

@@ -10,6 +10,12 @@
 			accepts_nested_attributes_for :pins, :allow_destroy => true
       self.per_page = 6
 
+      after_update :update_store
+
+      def update_store
+        self.store.update_attribute(:status, self.status)
+      end
+
 
 			#private
 			#url = "http://www.medelita.com/lab-coat-callia.html"
