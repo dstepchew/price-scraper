@@ -1,6 +1,6 @@
 ZoomApp::Application.routes.draw do
   resources :stores
-  resources :users
+
   resources :products do
     member do
       put :track
@@ -21,7 +21,7 @@ ZoomApp::Application.routes.draw do
   get "terms" => "pages#terms"
 
   resources "contacts", only: [:new, :create]
-
+  resources :users
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
