@@ -77,7 +77,7 @@
 
         def track
           pin = Pin.new(
-            description: 'Auto tracking item',
+            description: 'Fast Tracked By Marla',
             user_id: current_user.id,
             web_address: @product.url,
             url: @product.url,
@@ -88,7 +88,7 @@
 
           respond_to do |format|
             if pin.save
-              format.html { redirect_to products_path, notice: 'Lucky you! Marla is now tracking this item for you.' }
+              format.html { redirect_to products_path, notice: 'Lucky you! Marla is now tracking this item for you. Visit Your Items to add a description.' }
               format.json { head :no_content }
             else
               format.html { render action: 'edit' }

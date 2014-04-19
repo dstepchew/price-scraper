@@ -6,13 +6,13 @@ class ApplicationController < ActionController::Base
 
 
  APP_DOMAIN = 'www.marlaknows.com'
-  before_filter :ensure_domain
+  #before_filter :ensure_domain
 
-  def ensure_domain
-    unless request.env['HTTP_HOST'] == APP_DOMAIN || Rails.env.development?
-      redirect_to "http://#{APP_DOMAIN}", :status => 301
-    end
-  end
+  #def ensure_domain
+   # unless request.env['HTTP_HOST'] == APP_DOMAIN || Rails.env.development?
+    #  redirect_to "http://#{APP_DOMAIN}", :status => 301
+    #end
+  #end
 
   def require_admin
     unless current_user && current_user.role == 'ADMIN'
