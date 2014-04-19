@@ -13,14 +13,29 @@ namespace :scrap do
 
           agent = Mechanize.new
           page = agent.get(encoded_url)
-          if store.sales_price_selector
-            product_price_str = page.search(store.price_selector_2).first.text.match(/\b\d[\d,.]*\b/).to_s if page.search(store.price_selector_2).first
-            product_price_str = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s if ( product_price.nil? || product_price.blank? ) && page.search(store.price_selector).first
-          else
-            product_price_str = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s
-          end
-          product_price_str = product_price_str.split(".")[0]
-          product_price = product_price_str.scan(/\d/).join('')
+          
+
+
+
+            product_price_str = nil
+            product_price = nil
+
+            if store.sales_price_selector
+              product_price_str = page.search(store.price_selector_2).first.text.match(/\b\d[\d,.]*\b/).to_s if page.search(store.price_selector_2).first
+              product_price_str = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s if ( product_price.nil? || product_price.blank? ) && page.search(store.price_selector).first
+            else
+              product_price_str = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s
+            end
+            product_price_str = product_price_str.split(".")[0]
+            product_price = product_price_str.scan(/\d/).join('')
+
+
+
+
+
+
+
+
 
           if !product_price.blank? && product_price.to_f != pin.product.price.to_f
             ProductPriceUpdate.create(
