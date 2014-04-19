@@ -65,4 +65,14 @@ namespace :scrap do
       price_update.update_attribute(:status, 'notified')
     end
   end
+
+  task :activate_products => :environment do
+
+    
+    Product.all.each do |product|
+     product.update_attribute(:status, 'Active')
+     end
+
+   end
+
 end
