@@ -58,6 +58,7 @@ gem 'simple_form'
 
 group :development, :test do
      gem 'sqlite3'
+     gem 'meta_request'
 end
 
 group :production do
