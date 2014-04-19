@@ -9,18 +9,30 @@
         <% if product.status == "Inactive" %>
           <span class="inactive">Inactive</span>
         <% end %>
-        <%= link_to "Track this item", track_product_url(product), method: :put if current_user && !current_user.tagged_products.include?(product)%>
         <div class="actions">
-          <%= link_to edit_product_path(product) do %>
-              <span class="glyphicon glyphicon-edit"></span>
-              Edit
-          <% end %>
-          <%= link_to product, method: :delete, data: { confirm: 'Are you sure?' } do %>
-          <span class="glyphicon glyphicon-trash"></span>
-          Delete
-          <% end %>
-        </div>
+                <%= link_to edit_product_path(product) do %>
+                    <span class="glyphicon glyphicon-edit"></span>
+                    Edit
+                <% end %>
+                <%= link_to product, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                    <span class="glyphicon glyphicon-trash"></span>
+                    Delete
+                <% end %>
+          </div>
     <% end %>
+
+        
+
+        <% if user_signed_in? %>
+          <%= link_to "Track this item", track_product_url(product), method: :put if current_user && !current_user.tagged_products.include?(product)%>
+
+          
+        <% else %>
+               <%= link_to "Track this item", track_product_url(product) %>
+        <% end %>
+        
+        
+    
 
   </div>
 </div>

@@ -1,7 +1,7 @@
       class ProductsController < ApplicationController
         before_action :set_product, only: [:show, :edit, :update, :destroy, :track]
         before_action :authenticate_user!, except: [:index, :show]
-        before_filter :require_admin, except: [:index, :show]
+        before_filter :require_admin, except: [:index, :show, :track]
 
         # GET /products
         # GET /products.json
@@ -88,7 +88,7 @@
 
           respond_to do |format|
             if pin.save
-              format.html { redirect_to products_path, notice: 'Product was successfully added to tracking.' }
+              format.html { redirect_to products_path, notice: 'Lucky you! Marla is now tracking this item for you.' }
               format.json { head :no_content }
             else
               format.html { render action: 'edit' }

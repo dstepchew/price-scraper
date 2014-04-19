@@ -14,7 +14,7 @@
       </div>
 
       <div class="center">
-        <%= link_to 'Load More Products', products_path(:page => @products.next_page), :class => 'load-more-products', :remote => true if @products.next_page %>
+        <%= link_to 'Load More Products', products_path(:page => @products.next_page), :class => 'load-more-products btn btn-default btn-sm', :remote => true if @products.next_page %>
       </div>
 
 
