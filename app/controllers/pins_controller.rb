@@ -56,6 +56,7 @@ class PinsController < ApplicationController
               raise "Invalid product url"
             end
             product_price_str = nil
+            product_price = nil
 
             if store.sales_price_selector
               product_price_str = page.search(store.price_selector_2).first.text.match(/\b\d[\d,.]*\b/).to_s if page.search(store.price_selector_2).first
