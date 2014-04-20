@@ -99,13 +99,53 @@
            <div class="col-md-6 center">
               <%= link_to "Purchase This Item", @product.url, class: "btn btn-primary btn-lg btn-block", target: "_blank" %> 
             </div>
-            <% if @product.status == 'Active' %>
-            <div class="col-md-6 center">
-              <button type="button" class="btn btn-default btn-lg btn-block dropdown-toggle" data-toggle="collapse" data-target="#product-track" >
-              Track This Item
-              </button>
-            </div>
+
+            <% if user_signed_in? %>
+
+                    <% if @product.status == 'Active' %>
+                           <div class="col-md-6 center">
+                                <% if current_user && !current_user.tagged_products.include?(@product) %>
+                                    
+                                    <button type="button" class="btn btn-default btn-lg btn-block dropdown-toggle" data-toggle="collapse" data-target="#product-track" >
+                                    Track This Item
+                                    </button>
+                                    
+                                 
+                                <% else %>
+
+                                    <button type="button" class="btn btn-warning disabled btn-lg btn-block" >
+                                    You Are Tracking This Item
+                                    </button>
+                                    
+                                
+
+                                <% end %>  
+                            </div>
+
+
+                    <% else %>
+                        
+                         <button type="button" class="btn btn-primary disabled btn-lg btn-block" >
+                                This Product Is Sold Out Or Expired
+                          </button>
+
+
+                    <% end %>
+
+            <% else %>
+                    <% if @product.status == 'Active' %>
+                    <div class="col-md-6 center">
+                      <button type="button" class="btn btn-default btn-lg btn-block dropdown-toggle" data-toggle="collapse" data-target="#product-track" >
+                      Track This Item
+                      </button>
+                    </div>
+                    <% end %>
+
             <% end %>
+          
+
+
+
           </div>
           <div id="product-track" class="collapse">
 
