@@ -53,7 +53,7 @@
               <% end %>
 
            
-           
+          
 
           
           
@@ -113,6 +113,13 @@
                     <%= render 'pins/form', :pin => Pin.new(:url => @product.url, :image => @product.imageurl) %>
               </div>
           </div>
+           <div class="row">
+                <div class="col-md-12">
+                <h3 class="text-center">
+                  <%= @product.pins.count %> User(s) Currently Tracking This Product
+                  </h3>
+                </div>
+           </div>
   </div>    
           
           
