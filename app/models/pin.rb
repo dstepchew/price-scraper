@@ -8,6 +8,7 @@ class Pin < ActiveRecord::Base
      validates_presence_of :product, :store
   	 validates :description, presence: true
      has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+     
 
      def validate_selectors
        begin
