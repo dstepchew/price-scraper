@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140420161405) do
+ActiveRecord::Schema.define(version: 20140418065038) do
 
   create_table "pins", force: true do |t|
     t.string   "description"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20140420161405) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.text     "web_address"
+    t.string   "web_address"
     t.text     "url"
     t.integer  "product_id"
     t.integer  "store_id"
