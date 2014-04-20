@@ -153,6 +153,8 @@
                     <%= render 'pins/form', :pin => Pin.new(:url => @product.url, :image => @product.imageurl) %>
               </div>
           </div>
+
+          <% if @product.pins.count > 0 %>
            <div class="row">
                 <div class="col-md-12">
                 <h3 class="text-center">
@@ -160,6 +162,8 @@
                   </h3>
                 </div>
            </div>
+
+           <% end %>
   </div>    
           
           
