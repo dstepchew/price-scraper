@@ -110,6 +110,9 @@
               store_attributes: [
                  :id, :name, :description, :product_selector,
                 :name_selector, :price_selector, :image_selector
+              ],
+              pin_attributes: [
+                 :id, :user_id, :description
               ]
             )
           end

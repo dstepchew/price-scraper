@@ -36,6 +36,20 @@
               Delete 
               <% end %>
               </div>
+<br><br>
+              <div class="panel panel-default">
+               <div class="panel-heading"><h3>Users Tracking This Product</h3></div>
+
+              <table class="table table-striped">
+              <tr>
+              <th>User</th><th>Comment</th>
+              </tr>
+                 <% for pin in @product.pins %>
+                   <tr><td><strong> <%= link_to pin.user.name, pin.user %></strong></td><td><%= link_to pin.description, pin %></td> </tr>
+                 <% end %>
+              </table>
+              </div>
+
               <% end %>
 
            
