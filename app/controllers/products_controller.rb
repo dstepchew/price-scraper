@@ -109,7 +109,7 @@
               :name, :description, :imageurl, :url, :price, :status, :store_id,
               store_attributes: [
                  :id, :name, :description, :product_selector,
-                :name_selector, :price_selector, :image_selector
+                :name_selector, :price_selector, :price_selector_2, :salepriceselector, :image_selector
               ],
               pin_attributes: [
                  :id, :user_id, :description

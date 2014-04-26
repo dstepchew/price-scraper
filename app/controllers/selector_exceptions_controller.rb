@@ -35,7 +35,8 @@ before_filter :require_admin
             product_price = nil
 
             if store.sales_price_selector
-              product_price_str = page.search(store.price_selector_2).first.text.match(/\b\d[\d,.]*\b/).to_s if page.search(store.price_selector_2).first
+              product_price_str = page.search(store.salepriceselector).first.text.match(/\b\d[\d,.]*\b/).to_s if page.search(store.salepriceselector).first unless store.salepriceselector.nil?
+              product_price_str = page.search(store.price_selector_2).first.text.match(/\b\d[\d,.]*\b/).to_s if ( store.salepriceselector.nil? || product_price_str.nil? || product_price_str.blank? ) && page.search(store.price_selector_2).first 
               product_price_str = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s if ( product_price_str.nil? || product_price_str.blank? ) && page.search(store.price_selector).first
             else
               product_price_str = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s

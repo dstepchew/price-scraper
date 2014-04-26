@@ -57,6 +57,11 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :salepriceselector, "Special Price Selector", class: 'price_selector_2' %>
+    <%= f.text_field :salepriceselector, class: "form-control salepriceselector" %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :image_selector, "Image Selector" %>
     <%= f.text_field :image_selector, class: "form-control" %>
         <%= f.check_box :image_uses_relative_path, {}, true %> Uses relative path

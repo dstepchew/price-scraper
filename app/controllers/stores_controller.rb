@@ -93,7 +93,7 @@
           # Never trust parameters from the scary internet, only allow the white list through.
           def store_params
             params.require(:store).permit(:name, :url, :description, :image, :image_remote_url, :product_selector,
-                                          :name_selector, :price_selector, :sales_price_selector, :price_selector_2,
+                                          :name_selector, :price_selector, :sales_price_selector, :price_selector_2, :salepriceselector,
                                           :image_selector, :image_uses_relative_path, :status,product_attributes: [:id, :name, :description, :price, :imageurl, :url])
           end
       end
