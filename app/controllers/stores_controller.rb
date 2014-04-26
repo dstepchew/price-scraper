@@ -27,6 +27,7 @@
         # GET /stores/1
         # GET /stores/1.json
         def show
+          @products = Product.all
         end
 
         # GET /stores/new
@@ -93,6 +94,6 @@
           def store_params
             params.require(:store).permit(:name, :url, :description, :image, :image_remote_url, :product_selector,
                                           :name_selector, :price_selector, :sales_price_selector, :price_selector_2,
-                                          :image_selector, :image_uses_relative_path, :status)
+                                          :image_selector, :image_uses_relative_path, :status,product_attributes: [:id, :name, :description, :price, :imageurl, :url])
           end
       end

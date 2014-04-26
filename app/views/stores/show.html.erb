@@ -2,34 +2,50 @@
 
 <div class="container">
 <p id="notice"><%= notice %></p>
+<ol class="breadcrumb">
+  <li><%= link_to 'Home', root_path %></li>
+  <li><%= link_to 'Available Stores', stores_path %></li>
+  <li class="active"> <%= @store.name %></li>
+</ol>
 
-<p>
-  <strong>Name:</strong>
-  <%= @store.name %>
-</p>
+<h1>
+          <%= @store.name %>
+        </h1>
 
-<p>
+        <p>
+          <%= @store.description %>
+        </p>
+
+      
+       
+          <h4>Web Address: <%= link_to @store.url, "http://"+@store.url, target: "_blank" %>
+        </h4>
+<p style="display:none;">
 <%= image_tag @store.image.url(:medium) %>
 </p>
 
-<p>
-  <strong>Web Address:</strong>
-  <%= @store.url %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @store.description %>
-</p>
-
-<p>
+<h4>
   <strong>Products:</strong>
-   <ul>
-   <% for product in @store.products %>
-      <li><%= link_to product.name, edit_product_path(product) %></li>
-    <% end %>
-    </ul>
-</p>
+  </h4>
+
+      <div id="products" class="transitions-enabled infinite-scroll clearfix">
+ <ul>
+        <% @store.products.each do |product| %>
+          <%= render product %>
+
+
+         
+        <% end %>
+
+        </ul>
+      </div>
+
+      
+
+
+
+<div class="clearfix">
+
 <% if user_signed_in? && current_user.admin? %>
 <p>
   <strong>Pins:</strong>
@@ -42,5 +58,6 @@
 
 <%= link_to 'Edit', edit_store_path(@store) %> |
 <% end %>
-<%= link_to 'Back', stores_path %>
+<%= link_to 'Back', stores_path, class: "btn btn-default" %>
+</div>
 </div>
