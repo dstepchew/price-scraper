@@ -55,6 +55,8 @@ gem 'mail_form'
 
 gem 'simple_form'
 
+gem 'ransack'
+
 
 group :development, :test do
      gem 'sqlite3'

@@ -9,3 +9,7 @@ $(document).ready ->
     else
       $(".price_selector_2").show()
   return
+
+$ ->
+  $("#q_reset").click ->
+    $(".search-field").val('')

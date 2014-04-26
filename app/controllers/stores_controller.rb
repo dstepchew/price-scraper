@@ -7,9 +7,20 @@
         # GET /stores.json
         def index
           if current_user && current_user.admin?
-            @stores = Store.includes(:products).all
+             @search = Store.search(params[:q])
+            @stores = @search.result
           else
-            @stores = Store.where(status: 'Active').includes(:products).all
+            @search = Store.where(status: 'Active').search(params[:q])
+            @stores = @search.result.limit(50)
+            #@stores = Store.where(status: 'Active').includes(:products).paginate(:page => params[:page], :per_page => 8)
+          end
+         
+            if @search.result.count >= 200
+              redirect_to stores_path, notice: "Please Narrow Your Search"
+            elsif @search.result.count == 0
+              redirect_to stores_path, notice: "Sorry friend! None of our stores match your search. Perhaps try suggesting a store?"
+            else
+             true
           end
         end
 

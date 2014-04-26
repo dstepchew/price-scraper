@@ -1,43 +1,110 @@
 
 <% @title = 'Available Stores - Marla Knows' %>
 <div class="container">
-<h1>Visited Stores</h1>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">
+                <h1>Visited Stores</h1>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Web Address</th>
-      <th>Description</th>
-      <th>Status</th>
-      <% if user_signed_in? && current_user.admin? %>
-      <th></th>
-      <th></th>
-      <th></th>
-      <% end %>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @stores.each do |store| %>
-      <tr>
-        <td><%= link_to store.name, store %></td>
-        <td><%= link_to store.url, 'http://'+store.url, target: "_blank" %></td>
-        <td><%= store.description %></td>
-        <td><%= store.status %></td>
-        <% if user_signed_in? && current_user.admin? %>
-        <td><%= link_to 'Show', store, class: 'btn btn-success' %></td>
-        <td><%= link_to 'Edit', edit_store_path(store), class: 'btn btn-success' %></td>
-        <td><%= link_to 'Delete', store, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="jumbotron">
+        <%= search_form_for @search do |f| %>
+          <div class="form-group">
+            <%= f.label :name_cont, "Find A Store", class: "text-left" %>
+            <%= f.text_field :name_cont, class: "form-control search-field" %>
+          </div>
+          <div class="form-group text-left">
+            <%= f.submit "Search", class: "btn btn-lg btn-primary"%> <%= f.submit "Clear", :name => nil, :id => :q_reset, class: "btn btn-lg btn-default" %>
+          </div>
         <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      </div>
+                <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th><%= sort_link(@search, :name, "Store Name") %></th>
+                      <th>Web Address</th>
+                      <th>Description</th>
+                    
+                      <% if user_signed_in? && current_user.admin? %>
+                      <th>Status</th>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                      <% end %>
+                    </tr>
+                  </thead>
 
-<br>
-<% if user_signed_in? && current_user.admin? %>
-<%= link_to 'New Store', new_store_path, class: 'btn btn-primary' %>
-<% end %>
-<%= link_to 'Suggest A Store', new_contact_path, class: 'btn btn-primary' %>
+                  <tbody>
+                    <% @stores.each do |store| %>
+                      <tr>
+                        <td><%= link_to store.name, store %></td>
+                        <td><%= link_to store.url, 'http://'+store.url, target: "_blank" %></td>
+                        <td><%= store.description %></td>
+                      
+                        <% if user_signed_in? && current_user.admin? %>
+                          <td><%= store.status %></td>
+                        <td><%= link_to 'Show', store, class: 'btn btn-success' %></td>
+                        <td><%= link_to 'Edit', edit_store_path(store), class: 'btn btn-success' %></td>
+                        <td><%= link_to 'Delete', store, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+                        <% end %>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+                </div>
+
+    </div>
+    <div class="panel-footer">
+
+                <br>
+                <% if user_signed_in? && current_user.admin? %>
+                <%= link_to 'New Store', new_store_path, class: 'btn btn-primary' %>
+                <% end %>
+                <%= link_to 'Suggest A Store', new_contact_path, class: 'btn btn-warning' %>
+
+    </div>
+  </div>
 </div>
+
+
+
+
+
+
+
+  
+   
+ 
+    
+  
+ 
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

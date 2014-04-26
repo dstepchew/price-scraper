@@ -4,7 +4,8 @@ class UsersController < ApplicationController
   before_filter :require_admin, except: [:show]
 
   def index
-    @users = User.all
+    @search = User.search(params[:q])
+    @users = @search.result.limit(200)
   end
 
   def show
