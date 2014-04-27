@@ -31,18 +31,29 @@ before_filter :require_admin
       begin
         agent = Mechanize.new
         page = agent.get(pin_url)
-       product_price_str = nil
+       #product_price_str = nil
             product_price = nil
 
             if store.sales_price_selector
-              product_price_str = page.search(store.salepriceselector).first.text.match(/\b\d[\d,.]*\b/).to_s if page.search(store.salepriceselector).first unless store.salepriceselector.nil?
-              product_price_str = page.search(store.price_selector_2).first.text.match(/\b\d[\d,.]*\b/).to_s if ( store.salepriceselector.nil? || product_price_str.nil? || product_price_str.blank? ) && page.search(store.price_selector_2).first 
-              product_price_str = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s if ( product_price_str.nil? || product_price_str.blank? ) && page.search(store.price_selector).first
+              product_price = page.search(store.salepriceselector).first.text.match(/\b\d[\d,.]*\b/) if page.search(store.salepriceselector).first unless store.salepriceselector.nil?
+              product_price = page.search(store.price_selector_2).first.text.match(/\b\d[\d,.]*\b/) if ( store.salepriceselector.nil? || product_price.nil? || product_price.blank? ) && page.search(store.price_selector_2).first 
+              product_price = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/) if ( product_price.nil? || product_price.blank? ) && page.search(store.price_selector).first
             else
-              product_price_str = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s
+              product_price = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/)
             end
-            product_price_str = product_price_str.split(".")[0]
-            product_price = product_price_str.scan(/\d/).join('')
+      #      product_price_str = product_price_str.split(".")[0]
+      #      product_price = product_price_str.scan(/\d/).join('')
+
+
+      #      if store.sales_price_selector
+      #        product_price_str = page.search(store.salepriceselector).first.text.match(/\b\d[\d,.]*\b/).to_s if page.search(store.salepriceselector).first unless store.salepriceselector.nil?
+      #        product_price_str = page.search(store.price_selector_2).first.text.match(/\b\d[\d,.]*\b/).to_s if ( store.salepriceselector.nil? || product_price_str.nil? || product_price_str.blank? ) && page.search(store.price_selector_2).first 
+      #        product_price_str = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s if ( product_price_str.nil? || product_price_str.blank? ) && page.search(store.price_selector).first
+      #      else
+      #        product_price_str = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s
+      #      end
+      #      product_price_str = product_price_str.split(".")[0]
+      #      product_price = product_price_str.scan(/\d/).join('')
 
         product_name  = page.search(store.name_selector).first.text
         product_imageurl = page.search(store.image_selector).first.attribute('src').value

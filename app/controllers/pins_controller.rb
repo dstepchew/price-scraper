@@ -23,13 +23,19 @@ class PinsController < ApplicationController
 
     encoded_url = URI.encode(pin_url)
     pin_domain = URI.parse(encoded_url).host
-    store = Store.find_by_url(pin_domain)
+    store = Store.where(status: 'Active').find_by_url(pin_domain)
 
-    unless store
-      pin_domain_fragment = pin_domain.split(".")
-      pin_domain_without_sub_domain = pin_domain_fragment[1..-1].join(".")
-      store = Store.find_by_url(pin_domain_without_sub_domain)
-    end
+   unless store
+      pin_domain_frag = pin_domain.sub(/^https?\:\/\//, '').sub(/^www./,'')
+      pin_domain_prefix = 'www.'
+      pin_domain_no_sub_domain = pin_domain_prefix + pin_domain_frag
+      store = Store.where(status: 'Active').find_by_url(pin_domain_no_sub_domain)
+
+      #pin_domain_fragment = pin_domain.split(".")
+      #pin_domain_without_sub_domain = pin_domain_fragment[1..-1].join(".")
+      
+      #store = Store.find_by_url(pin_domain_without_sub_domain)
+   end
 
     already_pinned = false
     current_user.pins.each do |prev_pin|
@@ -42,9 +48,12 @@ class PinsController < ApplicationController
       flash[:notice] = "You are already tracking this item."
       render action: :new
     else
-      if store
-        @pin.store_id = store.id
 
+
+      if store 
+          
+        @pin.store_id = store.id 
+    
         product = Product.find_by_url(pin_url)
 
         unless product
@@ -55,18 +64,29 @@ class PinsController < ApplicationController
             rescue => exp
               raise "Invalid product url"
             end
-            product_price_str = nil
+#            product_price_str = nil
             product_price = nil
 
             if store.sales_price_selector
-              product_price_str = page.search(store.salepriceselector).first.text.match(/\b\d[\d,.]*\b/).to_s if page.search(store.salepriceselector).first unless store.salepriceselector.nil?
-              product_price_str = page.search(store.price_selector_2).first.text.match(/\b\d[\d,.]*\b/).to_s if ( store.salepriceselector.nil? || product_price_str.nil? || product_price_str.blank? ) && page.search(store.price_selector_2).first 
-              product_price_str = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s if ( product_price_str.nil? || product_price_str.blank? ) && page.search(store.price_selector).first
+              product_price = page.search(store.salepriceselector).first.text.match(/\b\d[\d,.]*\b/) if page.search(store.salepriceselector).first unless store.salepriceselector.nil?
+              product_price = page.search(store.price_selector_2).first.text.match(/\b\d[\d,.]*\b/) if ( store.salepriceselector.nil? || product_price.nil? || product_price.blank? ) && page.search(store.price_selector_2).first 
+              product_price = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/) if ( product_price.nil? || product_price.blank? ) && page.search(store.price_selector).first
             else
-              product_price_str = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s
+              product_price = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/)
             end
-            product_price_str = product_price_str.split(".")[0]
-            product_price = product_price_str.scan(/\d/).join('')
+      #      product_price_str = product_price_str.split(".")[0]
+      #      product_price = product_price_str.scan(/\d/).join('')
+
+
+      #      if store.sales_price_selector
+      #        product_price_str = page.search(store.salepriceselector).first.text.match(/\b\d[\d,.]*\b/).to_s if page.search(store.salepriceselector).first unless store.salepriceselector.nil?
+      #        product_price_str = page.search(store.price_selector_2).first.text.match(/\b\d[\d,.]*\b/).to_s if ( store.salepriceselector.nil? || product_price_str.nil? || product_price_str.blank? ) && page.search(store.price_selector_2).first 
+      #        product_price_str = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s if ( product_price_str.nil? || product_price_str.blank? ) && page.search(store.price_selector).first
+      #      else
+      #        product_price_str = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s
+      #      end
+      #      product_price_str = product_price_str.split(".")[0]
+      #      product_price = product_price_str.scan(/\d/).join('')
 
             product_name  = page.search(store.name_selector).first.text
             product_imageurl = page.search(store.image_selector).first.attribute('src').value
