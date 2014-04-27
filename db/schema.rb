@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140427072754) do
+ActiveRecord::Schema.define(version: 20140427170718) do
 
   create_table "pins", force: true do |t|
     t.string   "description"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20140427072754) do
     t.string   "price_selector_2"
     t.string   "status",                                 default: "Active"
     t.boolean  "image_uses_relative_path_2"
+    t.string   "affiliate_code",                         default: " "
   end
 
   create_table "users", force: true do |t|

@@ -68,6 +68,13 @@
         <br />
         <%= f.check_box :image_uses_relative_path_2, {}, true %> Uses relative path 2
   </div>
+
+
+  <div class="form-group">
+    <%= f.label :affiliate_code, "Affiliate Code", class: 'affiliate_code' %>
+    <%= f.text_field :affiliate_code, class: "form-control affiliate_code" %>
+  </div>
+
   <div class="form-group">
     <%= f.label :status %>
     <%= f.select :status, options_for_select(resource_statuses, @store.status) %>

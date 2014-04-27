@@ -68,11 +68,11 @@ class PinsController < ApplicationController
             product_price = nil
 
             if store.sales_price_selector
-              product_price = page.search(store.salepriceselector).first.text.match(/\b\d[\d,.]*\b/) if page.search(store.salepriceselector).first unless store.salepriceselector.nil?
-              product_price = page.search(store.price_selector_2).first.text.match(/\b\d[\d,.]*\b/) if ( store.salepriceselector.nil? || product_price.nil? || product_price.blank? ) && page.search(store.price_selector_2).first 
-              product_price = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/) if ( product_price.nil? || product_price.blank? ) && page.search(store.price_selector).first
+              product_price = page.search(store.salepriceselector).first.text.match(/\b\d[\d.]*\b/) if page.search(store.salepriceselector).first unless store.salepriceselector.nil?
+              product_price = page.search(store.price_selector_2).first.text.match(/\b\d[\d.]*\b/) if ( store.salepriceselector.nil? || product_price.nil? || product_price.blank? ) && page.search(store.price_selector_2).first 
+              product_price = page.search(store.price_selector).first.text.match(/\b\d[\d.]*\b/) if ( product_price.nil? || product_price.blank? ) && page.search(store.price_selector).first
             else
-              product_price = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/)
+              product_price = page.search(store.price_selector).first.text.match(/\b\d[\d.]*\b/)
             end
       #      product_price_str = product_price_str.split(".")[0]
       #      product_price = product_price_str.scan(/\d/).join('')
@@ -96,8 +96,10 @@ class PinsController < ApplicationController
             product_imageurl = product_urlprefix + store.url + product_imageurl if store.image_uses_relative_path
             product_imageurl = product_urlprefix2 + product_imageurl if store.image_uses_relative_path_2
 
+            store_pin_url = pin_url + store.affiliate_code
+
             product = Product.create!(
-              url: pin_url,
+              url: store_pin_url,
               store_id: store.id,
               price: product_price,
               name: product_name,
@@ -170,6 +172,6 @@ class PinsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pin_params
-      params.require(:pin).permit(:description, :image, :product_id, :store_id, :url, product_attributes: [:id, :name, :description, :price, :imageurl, :url], store_attributes: [:id, :name, :description, :url])
+      params.require(:pin).permit(:description, :image, :product_id, :store_id, :url, product_attributes: [:id, :name, :description, :price, :imageurl, :url], store_attributes: [:id, :name, :description, :url, :affiliate_code])
     end
 end

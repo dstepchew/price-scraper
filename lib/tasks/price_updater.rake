@@ -26,11 +26,11 @@ namespace :scrap do
 
 
           if store.sales_price_selector
-              product_price = page.search(store.salepriceselector).first.text.match(/\b\d[\d,.]*\b/).to_s.to_f if page.search(store.salepriceselector).first unless store.salepriceselector.nil?
-              product_price = page.search(store.price_selector_2).first.text.match(/\b\d[\d,.]*\b/).to_s.to_f if ( store.salepriceselector.nil? || product_price.nil? || product_price.blank? ) && page.search(store.price_selector_2).first 
-              product_price = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s.to_f if ( product_price.nil? || product_price.blank? ) && page.search(store.price_selector).first
+              product_price = page.search(store.salepriceselector).first.text.match(/\b\d[\d.]*\b/).to_s.to_f if page.search(store.salepriceselector).first unless store.salepriceselector.nil?
+              product_price = page.search(store.price_selector_2).first.text.match(/\b\d[\d.]*\b/).to_s.to_f if ( store.salepriceselector.nil? || product_price.nil? || product_price.blank? ) && page.search(store.price_selector_2).first 
+              product_price = page.search(store.price_selector).first.text.match(/\b\d[\d.]*\b/).to_s.to_f if ( product_price.nil? || product_price.blank? ) && page.search(store.price_selector).first
             else
-              product_price = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s.to_f
+              product_price = page.search(store.price_selector).first.text.match(/\b\d[\d.]*\b/).to_s.to_f
             end
 
 
