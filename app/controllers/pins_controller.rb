@@ -120,7 +120,7 @@ class PinsController < ApplicationController
                   backtrace: exp.backtrace[0..5].join("<br/>"),
                   user_id: current_user.id
               )
-              flash[:notice] = "Marla is having trouble with this item and she blames her daughter. Try again soon."
+              flash[:notice] = "Marla is having trouble with this item and she blames her daughter. Make sure you're on a product page and try again."
             end
 
             render action: 'new'
