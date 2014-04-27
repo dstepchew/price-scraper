@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140427010521) do
+ActiveRecord::Schema.define(version: 20140427072754) do
 
   create_table "pins", force: true do |t|
     t.string   "description"
@@ -83,9 +83,10 @@ ActiveRecord::Schema.define(version: 20140427010521) do
     t.string   "image_remote_url"
     t.string   "salepriceselector"
     t.boolean  "image_uses_relative_path"
-    t.boolean  "sales_price_selector",     limit: 255
+    t.boolean  "sales_price_selector",       limit: 255
     t.string   "price_selector_2"
-    t.string   "status",                               default: "Active"
+    t.string   "status",                                 default: "Active"
+    t.boolean  "image_uses_relative_path_2"
   end
 
   create_table "users", force: true do |t|
