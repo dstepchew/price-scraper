@@ -92,5 +92,11 @@ def destroy
     redirect_to selector_exceptions_url
   end
 
+def remove_all
+  SelectorException.delete_all
+  flash[:notice] = "You have removed all exceptions!"
+  redirect_to selector_exceptions_url
+end
+
 
 end
