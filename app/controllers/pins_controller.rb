@@ -118,26 +118,28 @@ class PinsController < ApplicationController
       # product_price_str = nil
       product_price = nil
     
-      if store.sales_price_selector
-        product_price = page.search(store.salepriceselector).first.text.match(/\b\d[\d.]*\b/).to_s.gsub(/[^\d.]/, '') if page.search(store.salepriceselector).first unless store.salepriceselector.nil?
-        product_price = page.search(store.price_selector_2).first.text.match(/\b\d[\d.]*\b/).to_s.gsub(/[^\d.]/, '') if ( store.salepriceselector.nil? || product_price.nil? || product_price.blank? ) && page.search(store.price_selector_2).first 
-        product_price = page.search(store.price_selector).first.text.match(/\b\d[\d.]*\b/).to_s.gsub(/[^\d.]/, '') if ( product_price.nil? || product_price.blank? ) && page.search(store.price_selector).first
-      else
-        product_price = page.search(store.price_selector).first.text.match(/\b\d[\d.]*\b/).to_s.gsub(/[^\d.]/, '')
-      end
+      #if store.sales_price_selector
+      #  product_price = page.search(store.salepriceselector).first.text.match(/\b\d[\d.]*\b/).to_s.gsub(/[^\d.]/, '') if page.search(store.salepriceselector).first unless store.salepriceselector.nil?
+      #  product_price = page.search(store.price_selector_2).first.text.match(/\b\d[\d.]*\b/).to_s.gsub(/[^\d.]/, '') if ( store.salepriceselector.nil? || product_price.nil? || product_price.blank? ) && page.search(store.price_selector_2).first 
+      #  product_price = page.search(store.price_selector).first.text.match(/\b\d[\d.]*\b/).to_s.gsub(/[^\d.]/, '') if ( product_price.nil? || product_price.blank? ) && page.search(store.price_selector).first
+      #else
+      #  product_price = page.search(store.price_selector).first.text.match(/\b\d[\d.]*\b/).to_s.gsub(/[^\d.]/, '')
+      #end
      
     
     
-      #  if store.sales_price_selector
-      #  product_price_str = page.search(store.salepriceselector).first.text.match(/\b\d[\d,.]*\b/).to_s.gsub(/[^\d.]/, '') if page.search(store.salepriceselector).first unless store.salepriceselector.nil?
-      #  product_price_str = page.search(store.price_selector_2).first.text.match(/\b\d[\d,.]*\b/).to_s.gsub(/[^\d.]/, '') if ( store.salepriceselector.nil? || product_price_str.nil? || product_price_str.blank? ) && page.search(store.price_selector_2).first 
-      #  product_price_str = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s.gsub(/[^\d.]/, '') if ( product_price_str.nil? || product_price_str.blank? ) && page.search(store.price_selector).first
-      # else
-      #  product_price_str = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s.gsub(/[^\d.]/, '')
-      # end
-      #product_price_str = product_price_str.split(".")[0+1]
-      # product_price = product_price_str.scan(/\d[\d,.]/).join('') 
-      product_price
+      if store.sales_price_selector
+        product_price_str = page.search(store.salepriceselector).first.text.match(/\b\d[\d,.]*\b/).to_s.gsub(/[^\d.]/, '') if page.search(store.salepriceselector).first unless store.salepriceselector.nil?
+        product_price_str = page.search(store.price_selector_2).first.text.match(/\b\d[\d,.]*\b/).to_s.gsub(/[^\d.]/, '') if ( store.salepriceselector.nil? || product_price_str.nil? || product_price_str.blank? ) && page.search(store.price_selector_2).first 
+        product_price_str = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s.gsub(/[^\d.]/, '') if ( product_price_str.nil? || product_price_str.blank? ) && page.search(store.price_selector).first
+       else
+        product_price_str = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s.gsub(/[^\d.]/, '')
+       end
+      product_price_str_decimal = "00"
+      product_price_str_decimal = product_price_str.split(".")[1] if product_price_str.split(".")[1]
+      product_price_str = product_price_str.split(".")[0]
+      product_price = product_price_str.scan(/\d[\d,.]/).join('') 
+      product_price + "." + product_price_str_decimal
     end
     
     def generate_related_product(store, page, pin_url)
