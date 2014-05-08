@@ -2,6 +2,7 @@ namespace :scrap do
   task :price_update => :environment do
     Pin.all.each do |pin|
       next if pin.product.status == "Inactive"
+      sleep 1
       begin
         if pin.validate_selectors
           pin_url = pin.url
@@ -22,17 +23,22 @@ namespace :scrap do
 
           agent = Mechanize.new
           page = agent.get(encoded_url)
+
           
-
-
-          if store.sales_price_selector
-              product_price = page.search(store.salepriceselector).first.text.match(/\b\d[\d.]*\b/).to_s.to_f if page.search(store.salepriceselector).first unless store.salepriceselector.nil?
-              product_price = page.search(store.price_selector_2).first.text.match(/\b\d[\d.]*\b/).to_s.to_f if ( store.salepriceselector.nil? || product_price.nil? || product_price.blank? ) && page.search(store.price_selector_2).first 
-              product_price = page.search(store.price_selector).first.text.match(/\b\d[\d.]*\b/).to_s.to_f if ( product_price.nil? || product_price.blank? ) && page.search(store.price_selector).first
-            else
-              product_price = page.search(store.price_selector).first.text.match(/\b\d[\d.]*\b/).to_s.to_f
-            end
-
+                if store.sales_price_selector
+                  product_price_str = page.search(store.salepriceselector).first.text.match(/\b\d[\d,.]*\b/).to_s.gsub(/[^\d.]/, '') if page.search(store.salepriceselector).first unless store.salepriceselector.nil?
+                  product_price_str = page.search(store.price_selector_2).first.text.match(/\b\d[\d,.]*\b/).to_s.gsub(/[^\d.]/, '') if ( store.salepriceselector.nil? || product_price_str.nil? || product_price_str.blank? ) && page.search(store.price_selector_2).first 
+                  product_price_str = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s.gsub(/[^\d.]/, '') if ( product_price_str.nil? || product_price_str.blank? ) && page.search(store.price_selector).first
+                 else
+                  product_price_str = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s.gsub(/[^\d.]/, '')
+                 end
+                product_price_str_decimal = "00"
+                product_price_str_decimal = product_price_str.split(".")[1] if product_price_str.split(".")[1] 
+                
+                product_price_str = product_price_str.split(".")[0]
+                
+                #product_price_str_new = product_price_str.scan(/\d[\d,.]/).join('') 
+                product_price = product_price_str + "." + product_price_str_decimal
 
           if !product_price.blank? && product_price.to_f != pin.product.price.to_f
             ProductPriceUpdate.create(

@@ -136,10 +136,12 @@ class PinsController < ApplicationController
         product_price_str = page.search(store.price_selector).first.text.match(/\b\d[\d,.]*\b/).to_s.gsub(/[^\d.]/, '')
        end
       product_price_str_decimal = "00"
-      product_price_str_decimal = product_price_str.split(".")[1] if product_price_str.split(".")[1]
+      product_price_str_decimal = product_price_str.split(".")[1] if product_price_str.split(".")[1] 
+      
       product_price_str = product_price_str.split(".")[0]
-      product_price = product_price_str.scan(/\d[\d,.]/).join('') 
-      product_price + "." + product_price_str_decimal
+      
+      #product_price_str_new = product_price_str.scan(/\d[\d,.]/).join('') 
+      product_price = product_price_str + "." + product_price_str_decimal
     end
     
     def generate_related_product(store, page, pin_url)
