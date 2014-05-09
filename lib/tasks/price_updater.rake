@@ -2,7 +2,7 @@ namespace :scrap do
   task :price_update => :environment do
     Pin.all.each do |pin|
       next if pin.product.status == "Inactive"
-      sleep 1
+      sleep 5
       begin
         if pin.validate_selectors
           pin_url = pin.url
@@ -63,8 +63,10 @@ namespace :scrap do
   end
 
   task :notify_user => :environment do
+
+   
     ProductPriceUpdate.where(status: 'pending').each do |price_update|
-      PriceUpdate.user_notification(price_update).deliver!
+     PriceUpdate.user_notification(price_update).deliver!
       price_update.update_attribute(:status, 'notified')
     end
   end
