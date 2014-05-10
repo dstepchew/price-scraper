@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140427170718) do
+ActiveRecord::Schema.define(version: 20140510081604) do
 
   create_table "pins", force: true do |t|
     t.string   "description"
@@ -88,15 +88,16 @@ ActiveRecord::Schema.define(version: 20140427170718) do
     t.string   "status",                                 default: "Active"
     t.boolean  "image_uses_relative_path_2"
     t.string   "affiliate_code",                         default: " "
+    t.string   "image_selector_2"
   end
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",        null: false
+    t.string   "encrypted_password",     default: "",        null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,         null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -106,6 +107,7 @@ ActiveRecord::Schema.define(version: 20140427170718) do
     t.string   "name"
     t.string   "username"
     t.string   "role"
+    t.string   "status",                 default: "Private"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

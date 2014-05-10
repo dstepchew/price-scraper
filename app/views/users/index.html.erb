@@ -30,8 +30,10 @@
                 <tr>
                   <th>Name</th>
                   <th>Email</th>
-                  <th>Role</th>
+                  
                   <% if user_signed_in? && current_user.admin? %>
+                  <th>Role</th>
+                  <th>Status</th>
                       <th></th>
                       <th></th>
                       <th></th>
@@ -44,8 +46,10 @@
                     <tr>
                       <td><%= link_to user.name, user if user.name %></td>
                       <td><%= user.email %></td>
-                      <td><%= user.role %></td>
+                      
                       <% if user_signed_in? && current_user.admin? %>
+                      <td><%= user.role %></td>
+                      <td><%= user.status %></td>
                         <td><%= link_to 'Show', user, class: 'btn btn-success' %></td>
                         <td><%= link_to 'Edit', edit_user_path(user), class: 'btn btn-success' %></td>
                         <td><%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>

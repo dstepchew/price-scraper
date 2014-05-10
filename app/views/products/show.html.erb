@@ -26,28 +26,33 @@
             </p>
 
             <% if user_signed_in? && current_user.admin? %>
-          <div class="actions">
-           <%= link_to edit_product_path(@product) do %>
-              <span class="glyphicon glyphicon-edit"></span>
-              Edit
-            <% end %>
-            <%= link_to @product, method: :delete, data: { confirm: 'Are you sure?' } do %>
-              <span class="glyphicon glyphicon-trash"></span>
-              Delete 
-              <% end %>
+              <div class="actions">
+                 <%= link_to edit_product_path(@product) do %>
+                    <span class="glyphicon glyphicon-edit"></span>
+                    Edit
+                  <% end %>
+                  <%= link_to @product, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                    <span class="glyphicon glyphicon-trash"></span>
+                    Delete 
+                    <% end %>
               </div>
-<br><br>
+              <br><br>
+               <% end %>
+               <% if user_signed_in? && current_user.admin? %>
               <div class="panel panel-default">
-               <div class="panel-heading"><h3>Users Tracking This Product</h3></div>
+                     <div class="panel-heading"><h3>Users Tracking This Product</h3></div>
 
-              <table class="table table-striped">
-              <tr>
-              <th>User</th><th>Comment</th>
-              </tr>
-                 <% for pin in @product.pins %>
-                   <tr><td><strong> <%= link_to pin.user.name, pin.user %></strong></td><td><%= link_to pin.description, pin %></td> </tr>
-                 <% end %>
-              </table>
+                    <table class="table table-striped">
+                    <tr>
+                    <th>User</th><th>Comment</th>
+                    </tr>
+                       <% for pin in @product.pins %>
+                    
+                         <tr><td><strong> <%= link_to pin.user.name, pin.user %></strong></td><td><%= link_to pin.description, pin %></td> </tr>
+                       
+                     
+                       <% end %>
+                    </table>
               </div>
 
               <% end %>

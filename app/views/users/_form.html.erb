@@ -35,6 +35,11 @@
     </div>
 
     <div class="form-group">
+          <%= f.label :status, "Choose 'Private' to hide your profile and items from others" %>
+          <%= f.select :status, options_for_select(user_statuses, @user.status) %>
+       </div>
+
+    <div class="form-group">
       <%= f.submit class: "btn btn-primary" %>
     </div>
 <% end %>

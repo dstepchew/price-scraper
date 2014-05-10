@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+
+  "name": "MarlaKnows",
+  "description": "This extension works with marlaknows.",
+  "version": "1.0",
+
+  "permissions": [
+    "http://www.marlaknows.com/"
+  ],
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  }
+}

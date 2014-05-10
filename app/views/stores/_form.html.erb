@@ -64,6 +64,15 @@
   <div class="form-group">
     <%= f.label :image_selector, "Image Selector" %>
     <%= f.text_field :image_selector, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+    <%= f.label :image_selector_2, "Image Selector 2", class: 'image_selector_2' %>
+    <%= f.text_field :image_selector_2, class: "form-control image_selector_2" %>
+  </div>
+
+    <div class="form-group">
+
         <%= f.check_box :image_uses_relative_path, {}, true %> Uses relative path
         <br />
         <%= f.check_box :image_uses_relative_path_2, {}, true %> Uses relative path 2

@@ -5,6 +5,11 @@ module ApplicationHelper
   end
 
   def user_roles
-    [ ["None",""], ["Admin", "Admin"] ]
+    [ ["None",""], ["ADMIN", "ADMIN"] ]
   end
+
+  def user_statuses
+  	[ ["Private", "Private"], ["Public", "Public"] ]
+  end	
+
 end

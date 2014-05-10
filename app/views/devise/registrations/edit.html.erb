@@ -3,7 +3,7 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <div class="panel-title">
-      <h1>Edit <%= resource_name.to_s.humanize %></h1>
+      <h1>Edit <%= resource_name.to_s.humanize %> Settings</h1>
     </div>
   </div>
   <div class="panel-body">
@@ -19,6 +19,17 @@
         <%= f.label :email %>
         <%= f.email_field :email, class: "form-control", :autofocus => true %>
       </div>
+
+
+     
+
+       <div class="form-group" >
+          <%= f.label :status, "Privacy" %>
+          <%= f.select :status, options_for_select(user_statuses, @user.status) %>
+          <span class="help-block"><strong>Private</strong> (default) - Other users cannot view your profile or tracked items. <br/> <strong>Public</strong> - Other users can view your profile and your tracked items.</span>
+
+       </div>
+
 
       <div class="form-group">
         <%= f.label :password %> <i>(leave blank if you don't want to change it)</i>

@@ -1,11 +1,20 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  before_filter :require_admin, except: [:show]
+  before_filter :require_admin, except: [:show, :index]
 
   def index
-    @search = User.search(params[:q])
-    @users = @search.result.limit(200)
+    
+    if current_user && current_user.admin?
+           @search = User.search(params[:q])
+           @users = @search.result.limit(200)
+
+          else
+           
+             @search = User.where(status: 'Public').search(params[:q])
+           @users = @search.result.limit(200)
+          end
+
   end
 
   def show
@@ -65,7 +74,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :role,
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :role, :status,
               pin_attributes: [
                  :id, :user_id, :description
               ])
