@@ -56,7 +56,8 @@ before_filter :require_admin
       #      product_price = product_price_str.scan(/\d/).join('')
 
         product_name  = page.search(store.name_selector).first.text
-        product_imageurl = page.search(store.image_selector).first.attribute('src').value
+        product_imageurl = page.search(store.image_selector).first.attribute('src').value if page.search(store.image_selector).first unless store.image_selector.nil?
+      product_imageurl = page.search(store.image_selector_2).first.attribute('src').value if ( store.image_selector.nil? || product_imageurl.nil? || product_imageurl.blank? ) 
 
         product_urlprefix = 'http://'
         product_imageurl = product_urlprefix + store.url + product_imageurl if store.image_uses_relative_path

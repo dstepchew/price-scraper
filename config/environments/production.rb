@@ -79,7 +79,7 @@ ZoomApp::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   #Required for Heroku
-    config.action_mailer.default_url_options = { :host => 'marlaknows.com' }
+    config.action_mailer.default_url_options = { :host => 'www.marlaknows.com' }
 # ActionMailer Config
 # Setup for production - deliveries, no errors raised
 config.action_mailer.delivery_method = :smtp
