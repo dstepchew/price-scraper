@@ -63,12 +63,20 @@ namespace :scrap do
   end
 
   task :notify_user => :environment do
-
    
-    ProductPriceUpdate.where(status: 'pending').each do |price_update|
-     PriceUpdate.user_notification(price_update).deliver!
-      price_update.update_attribute(:status, 'notified')
-    end
+   #recommended change
+     price_updates = ProductPriceUpdate.where(status: 'pending')
+      ProductPriceUpdate.user_notification(price_updates).deliver!
+      price_updates.each do |price_update|
+        price_update.update_attribute(:status, 'notified')
+      end
+
+#old
+
+  # ProductPriceUpdate.where(status: 'pending').each do |price_update|
+   # PriceUpdate.user_notification(price_update).deliver!
+   # price_update.update_attribute(:status, 'notified')
+  # end
   end
 
   task :activate_products => :environment do

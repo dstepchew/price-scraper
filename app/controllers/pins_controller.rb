@@ -147,8 +147,8 @@ class PinsController < ApplicationController
     def generate_related_product(store, page, pin_url)
       product_price = fetch_product_price(store, page) 
       product_name  = page.search(store.name_selector).first.text
-      product_imageurl = page.search(store.image_selector).first.attribute('src').value if page.search(store.image_selector).first unless store.image_selector.nil?
-      product_imageurl = page.search(store.image_selector_2).first.attribute('src').value if ( store.image_selector.nil? || product_imageurl.nil? || product_imageurl.blank? ) 
+      product_imageurl = page.search(store.image_selector).first.attribute('src').value().to_s.gsub(/[\n ]/, "") if page.search(store.image_selector).first unless store.image_selector.nil?
+      product_imageurl = page.search(store.image_selector_2).first.attribute('src').value().to_s.gsub(/[\n ]/, "") if ( store.image_selector.nil? || product_imageurl.nil? || product_imageurl.blank? ) 
     
       product_urlprefix = 'http://'
       product_urlprefix2 = 'http:'

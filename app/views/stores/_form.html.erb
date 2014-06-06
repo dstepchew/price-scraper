@@ -46,41 +46,41 @@
   </div>
 
   <div class="form-group">
-    <%= f.label :price_selector, "Price Selector", class: 'price_selector' %>
+    <%= f.label :price_selector, "Price Selector - Default Price", class: 'price_selector' %>
     <%= f.text_field :price_selector, class: "form-control price_selector" %>
     <%= f.check_box :sales_price_selector, value: false %> Uses separate sales price?
   </div>
 
   <div class="form-group">
-    <%= f.label :price_selector_2, "Sale Price Selector", class: 'price_selector_2' %>
+    <%= f.label :price_selector_2, "Sale Price Selector - 2nd Highest Priority", class: 'price_selector_2' %>
     <%= f.text_field :price_selector_2, class: "form-control price_selector_2" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :salepriceselector, "Special Price Selector", class: 'price_selector_2' %>
+    <%= f.label :salepriceselector, "Special Price Selector - Highest Priority", class: 'price_selector_2' %>
     <%= f.text_field :salepriceselector, class: "form-control salepriceselector" %>
   </div>
 
   <div class="form-group">
-    <%= f.label :image_selector, "Image Selector" %>
+    <%= f.label :image_selector, "Image Selector - Default" %>
     <%= f.text_field :image_selector, class: "form-control" %>
     </div>
 
     <div class="form-group">
-    <%= f.label :image_selector_2, "Image Selector 2", class: 'image_selector_2' %>
+    <%= f.label :image_selector_2, "Image Selector 2 - Highest Priority", class: 'image_selector_2' %>
     <%= f.text_field :image_selector_2, class: "form-control image_selector_2" %>
   </div>
 
     <div class="form-group">
 
-        <%= f.check_box :image_uses_relative_path, {}, true %> Uses relative path
+        <%= f.check_box :image_uses_relative_path, {}, true %> Uses relative path (i.e. src=/images...)
         <br />
-        <%= f.check_box :image_uses_relative_path_2, {}, true %> Uses relative path 2
+        <%= f.check_box :image_uses_relative_path_2, {}, true %> Uses relative path 2 (i.e. src=//www.sample....)
   </div>
 
 
   <div class="form-group">
-    <%= f.label :affiliate_code, "Affiliate Code", class: 'affiliate_code' %>
+    <%= f.label :affiliate_code, "Affiliate Code - Appends to Product URL", class: 'affiliate_code' %>
     <%= f.text_field :affiliate_code, class: "form-control affiliate_code" %>
   </div>
 
