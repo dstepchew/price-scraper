@@ -148,7 +148,7 @@
 
 
  <% @price_updates.each do |price_update|%>
- <p><strong><%= link_to @price_update.pin.product.name, pin_url(@price_update.pin), style:"color: #c0392b;" %></strong></p>
+ <p><strong><%= link_to price_update.pin.product.name, pin_url(@price_update.pin), style:"color: #c0392b;" %></strong></p>
  <% end %>
 
 </div>
