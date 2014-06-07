@@ -66,7 +66,7 @@ namespace :scrap do
    
    #recommended change
      price_updates = ProductPriceUpdate.where(status: 'pending')
-      ProductPriceUpdate.user_notification(price_updates).deliver!
+      PriceUpdate.user_notification(price_updates).deliver!
       price_updates.each do |price_update|
         price_update.update_attribute(:status, 'notified')
       end
