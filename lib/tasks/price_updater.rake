@@ -64,19 +64,19 @@ namespace :scrap do
 
   task :notify_user => :environment do
    
-   #recommended change
-     price_updates = ProductPriceUpdate.where(status: 'pending')
-      PriceUpdate.user_notification(price_updates).deliver!
-      price_updates.each do |price_update|
-        price_update.update_attribute(:status, 'notified')
-      end
+   #recommended change - undefined method 'pin' for activerecord error when run
+     #price_updates = ProductPriceUpdate.where(status: 'pending')
+     # PriceUpdate.user_notification(price_updates).deliver!
+    #  price_updates.each do |price_update|
+     #   price_update.update_attribute(:status, 'notified')
+     # end
 
 #old
 
-  # ProductPriceUpdate.where(status: 'pending').each do |price_update|
-   # PriceUpdate.user_notification(price_update).deliver!
-   # price_update.update_attribute(:status, 'notified')
-  # end
+   ProductPriceUpdate.where(status: 'pending').each do |price_update|
+    PriceUpdate.user_notification(price_update).deliver!
+   price_update.update_attribute(:status, 'notified')
+  end
   end
 
   task :activate_products => :environment do
