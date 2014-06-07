@@ -36,13 +36,14 @@ class PinsController < ApplicationController
       end
 
       if already_pinned
+        @pin = current_user.pins.build(pin_params)
         flash[:notice] = "You are already tracking this item."
         render action: :new
       else
         @pin = current_user.pins.build(pin_params)
         if store           
           @pin.store_id = store.id     
-          product = Product.find_by_url(pin_url)
+          product = Product.find_by_url(pin_url.strip)
           unless product
             product = generate_related_product(store, page, pin_url)
             @pin.image = open(product.imageurl)

@@ -7,7 +7,8 @@ class User < ActiveRecord::Base
 
   has_many :pins
 
-   validates :name, uniqueness: { case_sensitive: false, message: "this username has been taken" }
+  validates :name, uniqueness: { case_sensitive: false, message: "this username has been taken" }
+  validates_presence_of :name
  
 
   def admin?

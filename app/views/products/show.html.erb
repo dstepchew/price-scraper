@@ -48,7 +48,7 @@
                     </tr>
                        <% for pin in @product.pins %>
                     
-                         <tr><td><strong> <%= link_to pin.user.name, pin.user %></strong></td><td><%= link_to pin.description, pin %></td> </tr>
+                         <tr><td><strong> <%= link_to user_link_text(pin.user), pin.user %></strong></td><td><%= link_to pin.description, pin %></td> </tr>
                        
                      
                        <% end %>
