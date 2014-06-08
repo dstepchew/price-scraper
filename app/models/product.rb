@@ -20,7 +20,10 @@ class Product < ActiveRecord::Base
   def update_store
     self.store.update_attribute(:status, self.status)
   end
-
+  
+  def exact_url
+    URI.extract(self.url).first
+  end
 
   #private
   #url = "http://www.medelita.com/lab-coat-callia.html"
