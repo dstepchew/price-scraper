@@ -20,7 +20,7 @@ class PinsController < ApplicationController
 
 
   def create
-    pin_url = params[:pin][:url]
+    pin_url = params[:pin][:url].strip
     begin
       agent = Mechanize.new
       begin
@@ -36,13 +36,19 @@ class PinsController < ApplicationController
       end
 
       if already_pinned
+        @pin = current_user.pins.build(pin_params)
         flash[:notice] = "You are already tracking this item."
         render action: :new
       else
         @pin = current_user.pins.build(pin_params)
         if store           
           @pin.store_id = store.id     
-          product = Product.find_by_url(pin_url)
+          product = nil
+  
+          Product.all.each do |prd|
+            product = prd if prd.exact_url == pin_url
+          end
+
           unless product
             product = generate_related_product(store, page, pin_url)
             @pin.image = open(product.imageurl)

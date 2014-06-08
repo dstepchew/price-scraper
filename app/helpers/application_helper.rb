@@ -12,4 +12,11 @@ module ApplicationHelper
   	[ ["Private", "Private"], ["Public", "Public"] ]
   end	
 
+  def user_link_text user
+    if user.name.nil? || user.name.strip == ""
+      user.email
+    else
+      user.name
+    end
+  end
 end
